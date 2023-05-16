@@ -11,25 +11,102 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import "@fontsource/raleway/300.css";
+import "@fontsource/raleway/400.css";
+import "@fontsource/raleway/800.css";
+import "@fontsource/raleway/900.css";
 
-function Copyright(props: any) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+// function Copyright(props: any) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
-export default function SignInSide() {
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#31385e'
+    },
+  },
+  shape: {
+    borderRadius: 20,
+  },
+  // typography: {
+  //   fontFamily: [
+  //     'Raleway',
+  //     '-apple-system',
+  //     'BlinkMacSystemFont',
+  //     '"Segoe UI"',
+  //     '"Helvetica Neue"',
+  //     'Arial',
+  //     'sans-serif',
+  //     '"Apple Color Emoji"',
+  //     '"Segoe UI Emoji"',
+  //     '"Segoe UI Symbol"',
+  //   ].join(','),
+  // },
+});
+
+const StyledBackground = styled('div')`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  transform: skewY(-13deg);
+  transform-origin: 0 0;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  z-index: -1;
+`;
+
+const StyledH1 = styled(Typography)`
+  font-family: 'Raleway';
+  font-weight: 900;
+  font-size: 5rem;
+  line-height: .75;
+  color: ${theme.palette.primary.main};
+  letterSpacing: '-.25rem'
+`;
+
+const StyledH2 = styled(Typography)`
+  font-family: 'Raleway';
+  font-weight: 300;
+  font-size: 2rem;
+  margin-top: .5rem;
+  color: ${theme.palette.primary.main};
+`;
+
+const StyledFormContainer = styled(Paper)`
+  background-color: #f5f6f8;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,.1),
+              0 15px 35px rgba(0,0,0,.1),
+              0 50px 100px rgba(50,50,93,.1);
+  will-change: transform;
+  transition: all .25s cubic-bezier(0,0,.2,1);
+  transform: perspective(3190px) rotateY(-27deg) rotateX(4deg) rotate(1deg);
+
+  fieldset,
+  textarea {
+    background-color: #fff;
+  }
+`;
+
+const StyledFormMessage = styled(TextField)`
+  width: 100%
+`;
+
+export default function HomePage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -40,88 +117,73 @@ export default function SignInSide() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={theme}>
       <Grid
         container
         component="main"
         sx={{
-          height: '100vh',
-          backgroundImage: 'url(https://source.unsplash.com/random?wallpapers)',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
+          height: '100vh'
         }}
       >
         <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-        >
-          <Box sx={{ textAlign: 'center', mb: 2 }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-              RYAN
-            </Typography>
-            <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-              DeBERARDINIS
-            </Typography>
-            <Typography variant="h6" sx={{ mt: 2 }}>
+        <StyledBackground>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </StyledBackground>
+        <Grid item xs={12} sm={6} sx={{ p: 3 }}>
+          <Box>
+            <StyledH1 variant="h1">
+              <span>RYAN </span>
+              <span>DeBERARDINIS</span>
+            </StyledH1>
+            <StyledH2 variant="h2">
               Developer + Designer + Photographer
-            </Typography>
+            </StyledH2>
             <Typography variant="body1">
               I'm a creative professional living and working in New York City. My work combines a love of clean minimalist design with a passion for the latest web technologies. I'm always interested in hearing about new projects. Drop me a line if you'd like to collaborate on something new.
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={8} md={5}>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              boxShadow: '0 5px 15px rgba(0,0,0,.1), 0 15px 35px rgba(0,0,0,.1), 0 50px 100px rgba(50,50,93,.1)',
-              borderRadius: '9px',
-              backgroundColor: '#f5f5f5',
-              willChange: 'transform',
-              transition: 'all .25s cubic-bezier(0,0,.2,1)',
-              transform: 'perspective(3190px) rotateY(-27deg) rotateX(4deg) rotate(1deg)'
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
+        <Grid item xs={12} sm={6} sx={{ p: 3 }}>
+          <StyledFormContainer>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="phone"
+                label="Phone"
+                type="phone"
+                id="phone"
+                autoComplete="tel"
+              />
+              <StyledFormMessage
+                margin="normal"
+                id="message"
+                label="Message"
+                multiline
               />
               <Button
                 type="submit"
@@ -129,23 +191,10 @@ export default function SignInSide() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                Send Message
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
             </Box>
-          </Box>
+          </StyledFormContainer>
         </Grid>
       </Grid>
     </ThemeProvider>
