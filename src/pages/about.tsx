@@ -116,7 +116,7 @@ const childVariants = {
   }
 };
 
-export default function HomePage() {
+export default function AboutPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -148,8 +148,7 @@ export default function HomePage() {
               variants={childVariants}
               variant="h1"
             >
-              <span>RYAN </span>
-              <span>DeBERARDINIS</span>
+              <span>ABOUT</span>
             </StyledH1>
             <StyledH2
               // @ts-expect-error
