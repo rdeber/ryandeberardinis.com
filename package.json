@@ -1,0 +1,34 @@
+{
+  "name": "ryan-de-berardinis.com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ryan-de-berardinis.com",
+  "author": "Ryan DeBerardinis",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "gatsby": "^5.9.1",
+    "gatsby-plugin-image": "^3.10.0",
+    "gatsby-plugin-sharp": "^5.10.0",
+    "gatsby-plugin-sitemap": "^6.10.0",
+    "gatsby-source-filesystem": "^5.10.0",
+    "gatsby-transformer-sharp": "^5.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.5",
+    "@types/react": "^18.2.5",
+    "@types/react-dom": "^18.2.4",
+    "typescript": "^5.0.4"
+  }
+}
