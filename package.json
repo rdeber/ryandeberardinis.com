@@ -21,6 +21,7 @@
     "@fontsource/raleway": "^4.5.12",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.1",
+    "framer-motion": "^10.12.12",
     "gatsby": "^5.9.1",
     "gatsby-plugin-image": "^3.10.0",
     "gatsby-plugin-sharp": "^5.10.0",
