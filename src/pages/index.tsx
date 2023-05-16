@@ -144,7 +144,7 @@ export default function HomePage() {
               Developer + Designer + Photographer
             </StyledH2>
             <Typography variant="body1">
-              I'm a creative professional living and working in New York City. My work combines a love of clean minimalist design with a passion for the latest web technologies. I'm always interested in hearing about new projects. Drop me a line if you'd like to collaborate on something new.
+              Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
             </Typography>
           </Box>
         </Grid>
