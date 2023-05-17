@@ -18,6 +18,7 @@ import "@fontsource/raleway/400.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
+import Masonry from '@mui/lab/Masonry';
 
 
 
@@ -60,34 +61,23 @@ const StyledH2 = styled(Typography)`
   color: ${theme.palette.primary.main};
 `;
 
-const StyledFormContainer = styled(Paper)`
-  background-color: #f5f6f8;
-  padding: 2rem;
-  box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25),
-              0 18px 36px -18px rgba(0,0,0,0.3);
-  box-shadow: 1px 1px 5px 0 rgba(26,26,67,.05),
-              39px 62.5px 125px -25px rgba(50,50,93,.5),
-              23.4px 37.5px 75px -37.5px rgba(0,0,0,.6);
-  will-change: transform;
-  // transition: all .25s cubic-bezier(0,0,.2,1);
-  // transform: perspective(3190px) rotateY(-27deg) rotateX(4deg) rotate(1deg);
-
-  fieldset,
-  textarea {
-    background-color: #fff;
-  }
-  textarea {
-    min-height: 6rem
-  }
-
-  // &:focus-within {
-  //   transform: perspective(3190px) rotateY(0) rotateX(0) rotate(0);
-  // }
+const StyledMasonry = styled(Masonry)`
+  transform: rotateX(60deg) rotateZ(45deg) translateY(0%) translateX(0%);
+  position: absolute;
+  width: 50%;
+  right: 0;
 `;
 
-const StyledFormMessage = styled(TextField)`
-  width: 100%
-`;
+
+const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80, 30, 90, 70, 90, 100, 150, 30, 90, 70, 90, 100, 150,150, 30, 90, 70, 90, 100, 150, 30, 50, 80, 30, 90, 70, 90, 100, 150, 30, 90, 70, 90, 100, 150,];
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(0.5),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 const parentVariants = {
   hidden: {
@@ -126,6 +116,26 @@ export default function AboutPage() {
 
   return (
     <>
+      <motion.div
+        variants={parentVariants}
+        initial="hidden"
+        animate={'visible'}
+        style={{ position: 'relative' }}
+      >
+        <StyledMasonry columns={{ xs: 3, sm: 4 }} spacing={2}>
+          {heights.map((height, index) => (
+            <Item
+              // @ts-expect-error
+              component={motion.div}
+              variants={childVariants}
+              key={index}
+              sx={{ height }}
+            >
+              {index + 1}
+            </Item>
+          ))}
+        </StyledMasonry>
+      </motion.div>
       <Grid
         container
         component="main"
@@ -139,7 +149,7 @@ export default function AboutPage() {
             variants={parentVariants}
             initial="hidden"
             animate={'visible'}
-        >
+          >
             <StyledH1
               // @ts-expect-error
               component={motion.h1}
@@ -163,68 +173,6 @@ export default function AboutPage() {
             >
               My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies. When I’m not writing code and pushing pixels, you can often find me photographing the streets of New York City. I'm currently working as lead front end developer for Remote-Learner.
             </Typography>
-          </motion.div>
-        </Grid>
-        <Grid item xs={12} sm={6} sx={{ p: 3 }}>
-          <motion.div
-            initial={{ opacity: 0, transform: 'perspective(3000px) rotateY(0) rotateX(0) rotate(0)' }}
-            animate={{ opacity: 1, transform: 'perspective(3000px) rotateY(-27deg) rotateX(4deg) rotate(1deg)' }}
-            transition={{ duration: 0.5 }}
-          >
-            <StyledFormContainer>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  autoComplete="name"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="phone"
-                  label="Phone"
-                  type="phone"
-                  id="phone"
-                  autoComplete="tel"
-                />
-                <StyledFormMessage
-                  margin="normal"
-                  id="message"
-                  label="Message"
-                  multiline
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  // // @ts-expect-error
-                  // component={motion.button}
-                  // variants={childVariants}
-                  // whileHover={{
-                  //   scale: 1.2,
-                  //   transition: { duration: 0.3 }
-                  // }}
-                  // whileTap={{ scale: 0.9 }}
-                >
-                  Send Message
-                </Button>
-              </Box>
-            </StyledFormContainer>
           </motion.div>
         </Grid>
       </Grid>
