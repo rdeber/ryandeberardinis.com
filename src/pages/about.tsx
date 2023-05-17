@@ -1,6 +1,4 @@
 import * as React from 'react';
-import Layout from "../components/Layout"
-import NavBar from '../components/NavBar';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -148,7 +146,7 @@ export default function AboutPage() {
               variants={childVariants}
               variant="h1"
             >
-              <span>ABOUT</span>
+              <span>Hello.</span>
             </StyledH1>
             <StyledH2
               // @ts-expect-error
@@ -156,14 +154,14 @@ export default function AboutPage() {
               variants={childVariants}
               variant="h2"
             >
-              Developer + Designer + Photographer
+              I'm a creative professional from New York City.
             </StyledH2>
             <Typography
               component={motion.p}
               variants={childVariants}
               variant="body1"
             >
-              Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
+              My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies. When I’m not writing code and pushing pixels, you can often find me photographing the streets of New York City. I'm currently working as lead front end developer for Remote-Learner.
             </Typography>
           </motion.div>
         </Grid>

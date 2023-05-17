@@ -10,13 +10,24 @@ import { Link } from 'gatsby';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
+import MailIcon from '@mui/icons-material/Mail';
+import { CodeRounded, GitHub } from '@mui/icons-material';
 
-const StyledLink = styled(Typography)`
+const StyledLink = styled(Link)`
   font-family: 'Raleway';
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #fff;
   text-transform: uppercase;
+  color: rgba(255,255,255,.8);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.75rem;
+  transition: all 200ms ease;
+
+  &.active {
+    color: #fff;
+  }
 `;
 
 export default function NavBar() {
@@ -33,16 +44,19 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton>
-          <StyledLink sx={{ flexGrow: 1 }}>
-            <Link to="/">Home</Link>
-          </StyledLink>
-          <StyledLink sx={{ flexGrow: 1 }}>
-            <Link to="/about">About</Link>
-          </StyledLink>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <StyledLink activeClassName="active" to="/">Home</StyledLink>
+            <StyledLink activeClassName="active" to="/about">About</StyledLink>
+          </Box>
+          <Box sx={{ marginLeft: {sm: 'auto'} }}>
             <Tooltip title="Open settings">
-              <IconButton sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <MailIcon />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Open settings">
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <GitHub />
               </IconButton>
             </Tooltip>
           </Box>
