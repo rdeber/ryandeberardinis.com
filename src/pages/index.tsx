@@ -17,6 +17,7 @@ import "@fontsource/raleway/300.css";
 import "@fontsource/raleway/400.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
+import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -62,17 +63,16 @@ const StyledH2 = styled(Typography)`
   font-weight: 400;
   font-size: clamp(1.1rem, 3vw + .5rem, 5rem);
   margin: 0.5rem 0 1rem;
-  color: ${theme.palette.primary.main};
+  color: ${theme.palette.secondary.main};
 
   ${props => props.theme.breakpoints.up("md")} {
     font-size: clamp(1.1rem, 1.4vw + .5rem, 5rem);
-    font-weight: 300;
   }
 `;
 
 const StyledFormContainer = styled(Paper)`
   background-color: #f5f6f8;
-  padding: 2rem;
+  padding: 1rem 1.5rem;
   box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25),
               0 18px 36px -18px rgba(0,0,0,0.3);
   will-change: transform;
@@ -83,17 +83,44 @@ const StyledFormContainer = styled(Paper)`
                 23.4px 37.5px 75px -37.5px rgba(0,0,0,.6);
   }
 
+  form {
+    margin-top: 0;
+  }
 
-  .MuiOutlinedInput-notchedOutline,
-  textarea {
+  form > fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  form > fieldset > legend {
+    font-family: 'Architects Daughter';
+    font-size: 2rem;
+    color: ${theme.palette.primary.main};
+  }
+
+  label {
+    font-family: 'Raleway';
+    font-weight: 800;
+    font-size: .95rem;
+    color: ${theme.palette.primary.main};
+  }
+
+  .MuiInputBase-root {
     background-color: #fff;
-    box-shadow: 0 2px 5px -1px rgba(50,50,93,0.25), 0 1px 3px -1px rgba(0,0,0,0.3);
+    // box-shadow: 0 2px 5px -1px rgba(50,50,93,0.25), 0 1px 3px -1px rgba(0,0,0,0.3);
+    transition: all .15s ease;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25), 0 3px 7px -3px rgba(0,0,0,0.3);
-      border-color: #fff;
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: ${theme.palette.secondary.main};
+      }
     }
   }
+
   textarea {
     min-height: 6rem
   }
@@ -206,56 +233,59 @@ export default function HomePage() {
           >
             <StyledFormContainer>
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  name="name"
-                  autoComplete="name"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email"
-                  name="email"
-                  autoComplete="email"
-                />
-                <TextField
-                  margin="normal"
-                  required
-                  fullWidth
-                  name="phone"
-                  label="Phone"
-                  type="phone"
-                  id="phone"
-                  autoComplete="tel"
-                />
-                <StyledFormMessage
-                  margin="normal"
-                  id="message"
-                  label="Message"
-                  multiline
-                />
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
-                  // // @ts-expect-error
-                  // component={motion.button}
-                  // variants={childVariants}
-                  // whileHover={{
-                  //   scale: 1.2,
-                  //   transition: { duration: 0.3 }
-                  // }}
-                  // whileTap={{ scale: 0.9 }}
-                >
-                  Send Message
-                </Button>
+                <fieldset>
+                  <legend>Contact Me</legend>
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Name"
+                    name="name"
+                    autoComplete="name"
+                  />
+                  <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email"
+                    name="email"
+                    autoComplete="email"
+                  />
+                  <TextField
+                    margin="normal"
+                    fullWidth
+                    name="phone"
+                    label="Phone"
+                    type="phone"
+                    id="phone"
+                    autoComplete="tel"
+                  />
+                  <StyledFormMessage
+                    margin="normal"
+                    id="message"
+                    label="Message"
+                    multiline
+                    required
+                  />
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    sx={{ mt: 3, mb: 2 }}
+                    // // @ts-expect-error
+                    // component={motion.button}
+                    // variants={childVariants}
+                    // whileHover={{
+                    //   scale: 1.2,
+                    //   transition: { duration: 0.3 }
+                    // }}
+                    // whileTap={{ scale: 0.9 }}
+                  >
+                    Send Message
+                  </Button>
+                </fieldset>
               </Box>
             </StyledFormContainer>
           </motion.div>

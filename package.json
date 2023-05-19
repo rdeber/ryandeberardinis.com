@@ -18,6 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@fontsource/architects-daughter": "^4.5.9",
     "@fontsource/raleway": "^4.5.12",
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.130",

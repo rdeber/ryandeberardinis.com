@@ -5,6 +5,9 @@ export const theme = createTheme({
       primary: {
         main: '#31385e'
       },
+      secondary: {
+        main: '#293fb9'
+      },
     },
     shape: {
       borderRadius: 20,
