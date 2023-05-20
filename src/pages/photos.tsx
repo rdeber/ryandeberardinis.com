@@ -35,23 +35,32 @@ const StyledH2 = styled(Typography)`
 export default function AboutPage() {
   const data = useStaticQuery(graphql`
     query {
-      allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+      allFile(filter: { sourceInstanceName: { eq: "images/work" } }) {
         edges {
           node {
             childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED, placeholder: OUTLINE)
+              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
             }
+            name
           }
         }
       }
     }
   `);
 
-  const images = data.allFile.edges.map((edge: { node: { childImageSharp: { gatsbyImageData: ImageDataLike | null; }; name: any; }; }) => ({
-    image: getImage(edge.node.childImageSharp.gatsbyImageData),
-    alt: edge.node.name, // Assuming the image name is the alt text
-  }));
-
+  const images = data.allFile.edges.map((edge: {
+    node: {
+      name: string;
+      childImageSharp: { gatsbyImageData: ImageDataLike | null };
+    };
+  }) => {
+    const imageName = edge.node.name; // Get the image name
+    const parsedName = imageName.replace(/-/g, ' '); // Remove dashes from the name
+    return {
+      image: getImage(edge.node.childImageSharp.gatsbyImageData),
+      alt: parsedName, // Use the parsed name as the alt text
+    };
+  });
   return (
     <>
       <Grid
@@ -92,6 +101,7 @@ export default function AboutPage() {
 
         <Grid item xs={12} sm={6} sx={{ p: 3 }}>
           <Masonry columns={3} spacing={2}>
+            {console.log(images)}
           {images.map((image: any, index: number) => (
             <GatsbyImage
               key={index}
