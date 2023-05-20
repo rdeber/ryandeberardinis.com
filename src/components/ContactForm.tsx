@@ -109,7 +109,7 @@ export default function ContactForm() {
 
   return (
     <StyledFormContainer>
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box component="form" data-netlify="true" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
         <fieldset>
           <legend>Contact Me</legend>
           <TextField
