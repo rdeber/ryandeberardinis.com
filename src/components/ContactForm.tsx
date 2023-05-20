@@ -1,23 +1,10 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Link, navigate } from 'gatsby';
+import { navigate } from 'gatsby';
 import { styled } from '@mui/material/styles';
-import Tooltip from '@mui/material/Tooltip';
-import Avatar from '@mui/material/Avatar';
-import MailIcon from '@mui/icons-material/Mail';
-import { CodeRounded, GitHub, Send } from '@mui/icons-material';
+import { Send } from '@mui/icons-material';
 import { Paper, TextField } from '@mui/material';
 import { theme } from '../utils/theme';
-
-const StyledFormWrap = styled(Paper)`
-
-`
 
 const StyledFormContainer = styled(Paper)`
   background-color: #f5f6f8;
@@ -31,9 +18,7 @@ const StyledFormContainer = styled(Paper)`
                 39px 62.5px 125px -25px rgba(50,50,93,.5),
                 23.4px 37.5px 75px -37.5px rgba(0,0,0,.6);
   }
-  &:focus-within {
 
-  }
   form {
     margin-top: 0;
   }
@@ -74,20 +59,12 @@ const StyledFormContainer = styled(Paper)`
     &:focus-visible {
       box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
                   0 3px 7px -3px rgba(0,0,0,0.3);
-
-      // .MuiOutlinedInput-notchedOutline {
-      //   border-color: ${theme.palette.secondary.main};
-      // }
     }
   }
 
   textarea {
     min-height: 6rem
   }
-
-  // &:focus-within {
-  //   transform: perspective(3190px) rotateY(0) rotateX(0) rotate(0);
-  // }
 `;
 
 const StyledFormMessage = styled(TextField)`
@@ -99,22 +76,33 @@ const StyledButton = styled(Button)`
   font-weight: 800;
 `;
 
+// Encode form data as URL-encoded format
+// Encodes each key-value pair in the data object as URL-encoded string
+// Joins the encoded pairs with & to form the final encoded string
 function encode(data: any) {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&')
+    .join('&');
 }
 
 export default function ContactForm() {
-  const [state, setState] = React.useState({})
+  // State variable to hold form field values
+  const [state, setState] = React.useState({});
 
+  // Handle changes in form fields
+  // Updates the state with the new form field value
   const handleChange = (e: any) => {
-    setState({ ...state, [e.target.name]: e.target.value })
-  }
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
 
+  // Handle form submission
   const handleSubmit = (e: any) => {
-    e.preventDefault()
-    const form = e.target
+    e.preventDefault();
+
+    // Get the form element
+    const form = e.target;
+
+    // Send form data to the serverless function when the form is submitted
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -123,9 +111,11 @@ export default function ContactForm() {
         ...state,
       }),
     })
+      // Navigate to the specified action URL on successful submission
       .then(() => navigate(form.getAttribute('action')))
-      .catch((error) => alert(error))
-  }
+      // Display alert if there is an error during submission
+      .catch((error) => alert(error));
+  };
 
   return (
     <StyledFormContainer>
@@ -139,11 +129,6 @@ export default function ContactForm() {
       >
         {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
         <input type="hidden" name="form-name" value="contact" />
-        <p hidden>
-          <label>
-            Don't fill this out: <input name="bot-field" onChange={handleChange} />
-          </label>
-        </p>
         <fieldset>
           <legend>Contact Me</legend>
           <TextField
@@ -180,6 +165,7 @@ export default function ContactForm() {
             margin="normal"
             id="message"
             label="Message"
+            name="message"
             multiline
             required
             onChange={handleChange}
@@ -189,14 +175,6 @@ export default function ContactForm() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-          // // @ts-expect-error
-          // component={motion.button}
-          // variants={childVariants}
-          // whileHover={{
-          //   scale: 1.2,
-          //   transition: { duration: 0.3 }
-          // }}
-          // whileTap={{ scale: 0.9 }}
           >
             Send Message
             <Send sx={{ ml: 1 }} />
