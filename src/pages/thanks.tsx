@@ -114,8 +114,7 @@ export default function HomePage() {
               variants={childVariants}
               variant="h1"
             >
-              <div>THANK </div>
-              <div>YOU</div>
+              <div>THANK YOU</div>
             </StyledH1>
             <StyledH2
               // @ts-expect-error
@@ -123,15 +122,8 @@ export default function HomePage() {
               variants={childVariants}
               variant="h2"
             >
-              Developer + Designer + Photographer
+              I will be in touch soon!
             </StyledH2>
-            <Typography
-              component={motion.p}
-              variants={childVariants}
-              variant="body1"
-            >
-              Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
-            </Typography>
           </motion.div>
         </Grid>
         <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
