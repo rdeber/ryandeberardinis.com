@@ -12,6 +12,10 @@ import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { Send } from '@mui/icons-material';
 import ContactForm from '../components/ContactForm';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import MailIcon from '@mui/icons-material/Mail';
+import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
 
 // --cardShadowXSmall: 0 2px 5px -1px rgba(50,50,93,0.25),0 1px 3px -1px rgba(0,0,0,0.3);
 // --cardShadowSmall: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
@@ -38,10 +42,10 @@ const StyledBackground = styled('div')`
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;
-  font-size: clamp(2.75rem, 8vw + 1rem, 5rem);
+  font-size: clamp(2.75rem, 8vw + 1rem, 4rem);
   line-height: .75;
   color: ${theme.palette.primary.main};
-  letterSpacing: '-.25rem';
+  letter-spacing: -.125rem;
 
   ${props => props.theme.breakpoints.up("md")} {
     font-size: clamp(2.75rem, 4vw + 1rem, 5rem);
@@ -51,7 +55,7 @@ const StyledH1 = styled(Typography)`
 const StyledH2 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 400;
-  font-size: clamp(1.1rem, 3vw + .5rem, 5rem);
+  font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
   margin: 0.5rem 0 1rem;
   color: ${theme.palette.secondary.main};
 
@@ -100,6 +104,7 @@ export default function HomePage() {
           maxWidth: '1440px',
           height: '100%',
           margin: '0 auto',
+          minHeight: '100vh'
         }}
       >
         <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
@@ -107,7 +112,7 @@ export default function HomePage() {
             variants={parentVariants}
             initial="hidden"
             animate={'visible'}
-        >
+          >
             <StyledH1
               // @ts-expect-error
               component={motion.h1}
@@ -132,6 +137,26 @@ export default function HomePage() {
             >
               Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
             </Typography>
+            <Tooltip title="Contact Me">
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <DeleteTwoTone />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Contact Me">
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <DeleteTwoTone />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Contact Me">
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <DeleteTwoTone />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Contact Me">
+              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                <DeleteTwoTone />
+              </IconButton>
+            </Tooltip>
           </motion.div>
         </Grid>
         <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>

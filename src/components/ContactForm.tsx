@@ -5,6 +5,8 @@ import { styled } from '@mui/material/styles';
 import { Send } from '@mui/icons-material';
 import { Paper, TextField } from '@mui/material';
 import { theme } from '../utils/theme';
+import { motion } from 'framer-motion';
+import { childVariants, parentVariants } from '../utils/motion';
 
 const StyledFormContainer = styled(Paper)`
   background-color: #f5f6f8;
@@ -130,57 +132,79 @@ export default function ContactForm() {
         {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
         <input type="hidden" name="form-name" value="contact" />
         <fieldset>
-          <legend>Contact Me</legend>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="name"
-            label="Name"
-            name="name"
-            autoComplete="name"
-            onChange={handleChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email"
-            name="email"
-            autoComplete="email"
-            onChange={handleChange}
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            name="phone"
-            label="Phone"
-            type="phone"
-            id="phone"
-            autoComplete="tel"
-            onChange={handleChange}
-          />
-          <StyledFormMessage
-            margin="normal"
-            id="message"
-            label="Message"
-            name="message"
-            multiline
-            required
-            onChange={handleChange}
-          />
-          <StyledButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+          <motion.div
+            variants={parentVariants}
+            initial="hidden"
+            animate={'visible'}
           >
-            Send Message
-            <Send sx={{ ml: 1 }} />
-          </StyledButton>
+            <legend>Contact Me</legend>
+            <motion.div variants={childVariants}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="name"
+                label="Name"
+                name="name"
+                autoComplete="name"
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.div variants={childVariants}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email"
+                name="email"
+                autoComplete="email"
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.div variants={childVariants}>
+              <TextField
+                margin="normal"
+                fullWidth
+                name="phone"
+                label="Phone"
+                type="phone"
+                id="phone"
+                autoComplete="tel"
+                onChange={handleChange}
+              />
+            </motion.div>
+
+            <motion.div variants={childVariants}>
+              <StyledFormMessage
+                margin="normal"
+                id="message"
+                label="Message"
+                name="message"
+                multiline
+                required
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              variants={childVariants}
+            >
+              <StyledButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Send Message
+                <Send sx={{ ml: 1 }} />
+              </StyledButton>
+            </motion.div>
+          </motion.div>
         </fieldset>
       </form>
+
     </StyledFormContainer>
   );
 }

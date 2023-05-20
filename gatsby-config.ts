@@ -31,13 +31,22 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     "name": "images",
+    //     "path": "${__dirname}/src/images",
+    //   },
+    //   __key: "images",
+    // },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        "name": "images",
-        "path": "./src/images/",
+        // The unique name for each instance
+        name: `images`,
+        // Path to the directory
+        path: `${__dirname}/src/images/`,
       },
-      __key: "images",
     },
     // {
     //   resolve: 'gatsby-source-filesystem',
