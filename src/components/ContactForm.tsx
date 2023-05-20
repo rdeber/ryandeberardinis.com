@@ -109,7 +109,8 @@ export default function ContactForm() {
 
   return (
     <StyledFormContainer>
-      <Box component="form" data-netlify="true" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box name="contact" component="form" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <input type="hidden" name="form-name" value="contact" />
         <fieldset>
           <legend>Contact Me</legend>
           <TextField
