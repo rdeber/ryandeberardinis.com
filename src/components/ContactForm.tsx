@@ -129,7 +129,7 @@ export default function ContactForm() {
 
   return (
     <StyledFormContainer>
-    <form
+      <form
         name="contact"
         method="post"
         action="/thanks/"
@@ -137,37 +137,61 @@ export default function ContactForm() {
         data-netlify-honeypot="bot-field"
         onSubmit={handleSubmit}
       >
-        {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
         <input type="hidden" name="form-name" value="contact" />
-        <p hidden>
-          <label>
-            Don’t fill this out: <input name="bot-field" onChange={handleChange} />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your name:
-            <br />
-            <input type="text" name="name" onChange={handleChange} />
-          </label>
-        </p>
-        <p>
-          <label>
-            Your email:
-            <br />
-            <input type="email" name="email" onChange={handleChange} />
-          </label>
-        </p>
-        <p>
-          <label>
-            Message:
-            <br />
-            <textarea name="message" onChange={handleChange} />
-          </label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
+        <fieldset>
+          <legend>Contact Me</legend>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Name"
+            name="name"
+            autoComplete="name"
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
+            autoComplete="email"
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            name="phone"
+            label="Phone"
+            type="phone"
+            id="phone"
+            autoComplete="tel"
+          />
+          <StyledFormMessage
+            margin="normal"
+            id="message"
+            label="Message"
+            multiline
+            required
+          />
+          <StyledButton
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          // // @ts-expect-error
+          // component={motion.button}
+          // variants={childVariants}
+          // whileHover={{
+          //   scale: 1.2,
+          //   transition: { duration: 0.3 }
+          // }}
+          // whileTap={{ scale: 0.9 }}
+          >
+            Send Message
+            <Send sx={{ ml: 1 }} />
+          </StyledButton>
+        </fieldset>
       </form>
     </StyledFormContainer>
   );
