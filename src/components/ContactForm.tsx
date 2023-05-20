@@ -154,6 +154,7 @@ export default function ContactForm() {
             label="Name"
             name="name"
             autoComplete="name"
+            onChange={handleChange}
           />
           <TextField
             margin="normal"
