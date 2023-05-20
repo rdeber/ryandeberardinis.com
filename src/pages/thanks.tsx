@@ -127,24 +127,6 @@ export default function HomePage() {
           </motion.div>
         </Grid>
         <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
-          <motion.div
-            initial={{
-              opacity: 0,
-              transform: matches
-                ? 'perspective(25rem) rotateY(0) rotateX(0) rotate(0)'
-                : 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
-            }}
-            animate={{
-              opacity: 1,
-              transform: matches
-                ? 'perspective(75rem) rotateX(8deg)'
-                : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
-            }}
-            // transition={{ duration: 0.5 }}
-            transition={{ type: "spring", stiffness: 100 }}
-          >
-            <ContactForm />
-          </motion.div>
         </Grid>
       </Grid>
     </>
