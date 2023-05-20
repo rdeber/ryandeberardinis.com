@@ -12,18 +12,18 @@ export const theme = createTheme({
     shape: {
       borderRadius: 20,
     },
-    // typography: {
-    //   fontFamily: [
-    //     'Raleway',
-    //     '-apple-system',
-    //     'BlinkMacSystemFont',
-    //     '"Segoe UI"',
-    //     '"Helvetica Neue"',
-    //     'Arial',
-    //     'sans-serif',
-    //     '"Apple Color Emoji"',
-    //     '"Segoe UI Emoji"',
-    //     '"Segoe UI Symbol"',
-    //   ].join(','),
-    // },
+    typography: {
+      fontFamily: [
+        'Open Sans',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    },
   });

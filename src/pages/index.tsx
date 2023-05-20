@@ -1,18 +1,8 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
-import { motion } from "framer-motion"
+import { motion, transform } from "framer-motion"
 import "@fontsource/raleway/300.css";
 import "@fontsource/raleway/400.css";
 import "@fontsource/raleway/800.css";
@@ -20,8 +10,8 @@ import "@fontsource/raleway/900.css";
 import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
-
+import { Send } from '@mui/icons-material';
+import ContactForm from '../components/ContactForm';
 
 // --cardShadowXSmall: 0 2px 5px -1px rgba(50,50,93,0.25),0 1px 3px -1px rgba(0,0,0,0.3);
 // --cardShadowSmall: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
@@ -66,72 +56,8 @@ const StyledH2 = styled(Typography)`
   color: ${theme.palette.secondary.main};
 
   ${props => props.theme.breakpoints.up("md")} {
-    font-size: clamp(1.1rem, 1.4vw + .5rem, 5rem);
+    font-size: clamp(1.1rem, 1.35vw + .5rem, 5rem);
   }
-`;
-
-const StyledFormContainer = styled(Paper)`
-  background-color: #f5f6f8;
-  padding: 1rem 1.5rem;
-  box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25),
-              0 18px 36px -18px rgba(0,0,0,0.3);
-  will-change: transform;
-
-  ${props => props.theme.breakpoints.up("md")} {
-    box-shadow: 1px 1px 5px 0 rgba(26,26,67,.05),
-                39px 62.5px 125px -25px rgba(50,50,93,.5),
-                23.4px 37.5px 75px -37.5px rgba(0,0,0,.6);
-  }
-
-  form {
-    margin-top: 0;
-  }
-
-  form > fieldset {
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  form > fieldset > legend {
-    font-family: 'Architects Daughter';
-    font-size: 2rem;
-    color: ${theme.palette.primary.main};
-  }
-
-  label {
-    font-family: 'Raleway';
-    font-weight: 800;
-    font-size: .95rem;
-    color: ${theme.palette.primary.main};
-  }
-
-  .MuiInputBase-root {
-    background-color: #fff;
-    // box-shadow: 0 2px 5px -1px rgba(50,50,93,0.25), 0 1px 3px -1px rgba(0,0,0,0.3);
-    transition: all .15s ease;
-
-    &:hover,
-    &:focus-visible {
-      box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25), 0 3px 7px -3px rgba(0,0,0,0.3);
-
-      .MuiOutlinedInput-notchedOutline {
-        border-color: ${theme.palette.secondary.main};
-      }
-    }
-  }
-
-  textarea {
-    min-height: 6rem
-  }
-
-  // &:focus-within {
-  //   transform: perspective(3190px) rotateY(0) rotateX(0) rotate(0);
-  // }
-`;
-
-const StyledFormMessage = styled(TextField)`
-  width: 100%
 `;
 
 const parentVariants = {
@@ -151,24 +77,17 @@ const parentVariants = {
 const childVariants = {
   hidden: {
     opacity: 0,
-    x: -16
+    x: -16,
+    transition: { type: "spring", stiffness: 100 }
   },
   visible: {
     opacity: 1,
-    x: 0
+    x: 0,
+    transition: { type: "spring", stiffness: 100 }
   }
 };
 
 export default function HomePage() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
-
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
@@ -221,73 +140,18 @@ export default function HomePage() {
               opacity: 0,
               transform: matches
                 ? 'perspective(25rem) rotateY(0) rotateX(0) rotate(0)'
-                : 'perspective(3000px) rotateY(0) rotateX(0) rotate(0)'
+                : 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
             }}
             animate={{
               opacity: 1,
               transform: matches
                 ? 'perspective(75rem) rotateX(8deg)'
-                : 'perspective(3000px) rotateY(-27deg) rotateX(4deg) rotate(1deg)'
+                : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
             }}
-            transition={{ duration: 0.5 }}
+            // transition={{ duration: 0.5 }}
+            transition={{ type: "spring", stiffness: 100 }}
           >
-            <StyledFormContainer>
-              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <fieldset>
-                  <legend>Contact Me</legend>
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="name"
-                    label="Name"
-                    name="name"
-                    autoComplete="name"
-                  />
-                  <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email"
-                    name="email"
-                    autoComplete="email"
-                  />
-                  <TextField
-                    margin="normal"
-                    fullWidth
-                    name="phone"
-                    label="Phone"
-                    type="phone"
-                    id="phone"
-                    autoComplete="tel"
-                  />
-                  <StyledFormMessage
-                    margin="normal"
-                    id="message"
-                    label="Message"
-                    multiline
-                    required
-                  />
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ mt: 3, mb: 2 }}
-                    // // @ts-expect-error
-                    // component={motion.button}
-                    // variants={childVariants}
-                    // whileHover={{
-                    //   scale: 1.2,
-                    //   transition: { duration: 0.3 }
-                    // }}
-                    // whileTap={{ scale: 0.9 }}
-                  >
-                    Send Message
-                  </Button>
-                </fieldset>
-              </Box>
-            </StyledFormContainer>
+            <ContactForm />
           </motion.div>
         </Grid>
       </Grid>

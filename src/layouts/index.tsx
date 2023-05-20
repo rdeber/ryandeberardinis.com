@@ -17,6 +17,10 @@ export default function Layout({ children }: LayoutProps) {
         initial={{ opacity: 0, transform: 'translateY(-5px)' }}
         animate={{ opacity: 1, transform: 'translateY(0)' }}
         transition={{ duration: 0.25 }}
+        style={{
+          position: 'relative',
+          zIndex: '1'
+        }}
       >
         <NavBar />
       </motion.div>
