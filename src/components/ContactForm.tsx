@@ -164,6 +164,7 @@ export default function ContactForm() {
             label="Email"
             name="email"
             autoComplete="email"
+            onChange={handleChange}
           />
           <TextField
             margin="normal"
@@ -173,6 +174,7 @@ export default function ContactForm() {
             type="phone"
             id="phone"
             autoComplete="tel"
+            onChange={handleChange}
           />
           <StyledFormMessage
             margin="normal"
@@ -180,6 +182,7 @@ export default function ContactForm() {
             label="Message"
             multiline
             required
+            onChange={handleChange}
           />
           <StyledButton
             type="submit"
