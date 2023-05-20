@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
@@ -99,17 +99,46 @@ const StyledButton = styled(Button)`
   font-weight: 800;
 `;
 
-export default function ContactForm() {
+function encode(data: any) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+}
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log('TEST');
-  };
+export default function ContactForm() {
+  const [state, setState] = React.useState({})
+
+  const handleChange = (e: any) => {
+    setState({ ...state, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    const form = e.target
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...state,
+      }),
+    })
+      .then(() => navigate(form.getAttribute('action')))
+      .catch((error) => alert(error))
+  }
 
   return (
     <StyledFormContainer>
-      <Box name="contact" component="form" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+      <Box
+        component="form"
+        name="contact"
+        method="post"
+        action="/thanks/"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        onSubmit={handleSubmit}
+        sx={{ mt: 1 }}
+      >
         <input type="hidden" name="form-name" value="contact" />
         <fieldset>
           <legend>Contact Me</legend>
