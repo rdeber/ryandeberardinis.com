@@ -5,16 +5,17 @@ import 'photoswipe/style.css';
 interface PhotoProps {
   alt: string
   largeURL: string
+  srcSet: string
   thumbnailURL: string
   datapswpwidth: number
   datapswpheight: number
 }
 
-const PhotoGallery = (
+const Photo = (
   props: PhotoProps
 ): React.ReactElement => {
   const {
-    alt, largeURL, thumbnailURL, datapswpwidth, datapswpheight, ...rest
+    alt, largeURL, srcSet, thumbnailURL, datapswpwidth, datapswpheight, ...rest
   } = props
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const PhotoGallery = (
   return (
     <a
       href={largeURL}
+      data-pswp-srcset={srcSet}
       data-pswp-width={datapswpwidth}
       data-pswp-height={datapswpheight}
       target="_blank"
@@ -50,4 +52,4 @@ const PhotoGallery = (
   );
 }
 
-export default PhotoGallery;
+export default Photo;

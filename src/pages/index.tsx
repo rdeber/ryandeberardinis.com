@@ -26,6 +26,16 @@ import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
 // --stripeAccentLight: #e3e7ec;
 // --stripeAccentDark: #0a2540;
 
+// <!-- Google tag (gtag.js) -->
+// <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRTZQJE21"></script>
+// <script>
+//   window.dataLayer = window.dataLayer || [];
+//   function gtag(){dataLayer.push(arguments);}
+//   gtag('js', new Date());
+
+//   gtag('config', 'G-8MRTZQJE21');
+// </script>
+
 const StyledBackground = styled('div')`
   position: fixed;
   display: flex;

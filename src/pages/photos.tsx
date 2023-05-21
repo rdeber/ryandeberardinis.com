@@ -12,11 +12,9 @@ import Masonry from '@mui/lab/Masonry';
 import {
   childVariants, parentVariants, photoParent, photoChild,
 } from '../utils/motion';
-import { GatsbyImage, ImageDataLike, StaticImage, getImage } from 'gatsby-plugin-image';
+import { ImageDataLike } from 'gatsby-plugin-image';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Gallery, Item } from 'react-photoswipe-gallery';
-import Photos from '../components/Photos';
-import PhotoGallery from '../components/Photos';
+import Photo from '../components/Photo';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -35,6 +33,14 @@ const StyledH2 = styled(Typography)`
   color: ${theme.palette.primary.main};
 `;
 
+const StyledBox = styled(motion.div)`
+  background: #fff;
+  box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25),
+              0 18px 36px -18px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  overflow: hidden;
+`;
+
 export default function AboutPage() {
   // Get all the images from the photos directory
   // and generated the sizes and data.
@@ -44,7 +50,7 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 75)
+              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 400, quality: 75)
               photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 75)
             }
             name
@@ -73,14 +79,14 @@ export default function AboutPage() {
     return {
       thumbnailURL: edge.node.childImageSharp.thumbnail.images.fallback.src,
       largeURL: edge.node.childImageSharp.photo.images.fallback.src,
-      srcSet: edge.node.childImageSharp.photo.images.sources[0].srcSet,
+      srcSet: edge.node.childImageSharp.photo.images.fallback.srcSet,
       width: edge.node.childImageSharp.photo.width,
       height: edge.node.childImageSharp.photo.height,
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
   console.log('data', data);
-  console.log(images);
+  console.log(images[0].srcSet);
 
   return (
     <>
@@ -95,7 +101,7 @@ export default function AboutPage() {
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} sm={6} sx={{ p: { xs: 2, sm: 6 } }}>
+        <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -120,9 +126,9 @@ export default function AboutPage() {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
           <Masonry
-            columns={3}
+            columns={{ xs: 2, sm: 3, md:4 }}
             spacing={2}
             component={motion.div}
             variants={photoParent}
@@ -132,15 +138,17 @@ export default function AboutPage() {
             id='my-test-gallery'
           >
             {images.map((image: any, index: number) => (
-              <PhotoGallery
-                // galleryID="my-test-gallery"
-                alt={image.alt}
-                largeURL={image.largeURL}
-                thumbnailURL={image.thumbnailURL}
-                datapswpwidth={image.width}
-                datapswpheight={image.height}
-                key={'photo-' + index}
-              />
+              <StyledBox variants={photoChild}>
+                <Photo
+                  alt={image.alt}
+                  largeURL={image.largeURL}
+                  srcSet={image.srcSet}
+                  thumbnailURL={image.thumbnailURL}
+                  datapswpwidth={image.width}
+                  datapswpheight={image.height}
+                  key={'photo-' + index}
+                />
+              </StyledBox>
             ))}
             {/* {images.map((image: any, index: number) => (
               <motion.div variants={photoChild}>
