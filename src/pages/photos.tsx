@@ -16,7 +16,7 @@ import { GatsbyImage, ImageDataLike, StaticImage, getImage } from 'gatsby-plugin
 import { graphql, useStaticQuery } from 'gatsby';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 import Photos from '../components/Photos';
-import SimpleGallery from '../components/Photos';
+import PhotoGallery from '../components/Photos';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -36,6 +36,8 @@ const StyledH2 = styled(Typography)`
 `;
 
 export default function AboutPage() {
+  // Get all the images from the photos directory
+  // and generated the sizes and data.
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { sourceInstanceName: { eq: "photos" } }) {
@@ -43,6 +45,9 @@ export default function AboutPage() {
           node {
             childImageSharp {
               gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
+              fixed(width: 200) {
+                ...GatsbyImageSharpFixed
+              }
             }
             name
           }
@@ -51,52 +56,34 @@ export default function AboutPage() {
     }
   `);
 
-  const images = data.allFile.edges.map((edge: {
-    node: {
-      name: string;
-      childImageSharp: { gatsbyImageData: ImageDataLike | null };
-    };
-  }) => {
+  // Build the photos data object
+  const images = data.allFile.edges.map((
+    edge: {
+      node: {
+        name: string;
+        childImageSharp: {
+          fixed: any
+          gatsbyImageData: ImageDataLike
+        };
+      };
+    }) => {
     const imageName = edge.node.name; // Get the image name
     const parsedName = imageName.replace(/-/g, ' '); // Remove dashes from the name
     return {
-      image: getImage(edge.node.childImageSharp.gatsbyImageData),
+      thumbnailURL: edge.node.childImageSharp.fixed.src,
+      // image: getImage(edge.node.childImageSharp.gatsbyImageData),
+      largeURL: edge.node.childImageSharp.gatsbyImageData.images.fallback.src,
+      srcSet: edge.node.childImageSharp.gatsbyImageData.images.sources[0].srcSet,
+      width: edge.node.childImageSharp.gatsbyImageData.width,
+      height: edge.node.childImageSharp.gatsbyImageData.height,
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
+  console.log('data', data);
   console.log(images);
+
   return (
     <>
-      {/* <Photos /> */}
-      <SimpleGallery
-        galleryID="my-test-gallery"
-        images={[
-          {
-            largeURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg',
-            thumbnailURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg',
-            width: 1875,
-            height: 2500,
-          },
-          {
-            largeURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg',
-            thumbnailURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg',
-            width: 1669,
-            height: 2500,
-          },
-          {
-            largeURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg',
-            thumbnailURL:
-              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg',
-            width: 2500,
-            height: 1666,
-          },
-        ]}
-      />
       <Grid
         container
         component="main"
@@ -108,7 +95,7 @@ export default function AboutPage() {
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} sm={6} sx={{ p: {xs: 2, sm: 6} }}>
+        <Grid item xs={12} sm={6} sx={{ p: { xs: 2, sm: 6 } }}>
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -142,20 +129,24 @@ export default function AboutPage() {
             initial="hidden"
             animate={'visible'}
           >
-            {images.map((image: any, index: number) => (
+            <PhotoGallery
+              galleryID="my-test-gallery"
+              images={images}
+            />
+            {/* {images.map((image: any, index: number) => (
               <motion.div variants={photoChild}>
-                {/* <SimpleGallery
+                <SimpleGallery
                   galleryID="my-test-gallery"
                   images={image.image}
-                /> */}
-                {/* <GatsbyImage
+                />
+                <GatsbyImage
                   key={index}
                   image={image.image}
                   alt={image.alt}
                   // style={{ width: '100%', height: 'auto' }}
-                /> */}
+                />
               </motion.div>
-            ))}
+            ))} */}
           </Masonry>
         </Grid>
       </Grid>
