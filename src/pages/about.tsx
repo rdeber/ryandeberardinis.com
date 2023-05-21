@@ -29,17 +29,14 @@ const StyledH1 = styled(Typography)`
 
 const StyledH2 = styled(Typography)`
   font-family: 'Raleway';
-  font-weight: 300;
-  font-size: 2rem;
-  margin-top: .5rem;
-  color: ${theme.palette.primary.main};
-`;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
+  margin: 0.5rem 0 1rem;
+  color: ${theme.palette.secondary.main};
 
-const StyledMasonry = styled(Masonry)`
-  // transform: rotateX(60deg) rotateZ(45deg) translateY(0%) translateX(0%);
-  position: absolute;
-  width: 50%;
-  right: 0;
+  ${props => props.theme.breakpoints.up("md")} {
+    font-size: clamp(1.1rem, 1.35vw + .5rem, 5rem);
+  }
 `;
 
 const StyledBoxWrap = styled(motion.div)`
@@ -133,7 +130,18 @@ export default function AboutPage() {
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            padding: {
+              xs: '2rem 1.5rem',
+              sm: '3rem 3rem 3rem',
+              md: '6rem 1rem 4rem 3rem'
+            }
+          }}
+        >
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -153,7 +161,7 @@ export default function AboutPage() {
               variants={childVariants}
               variant="h2"
             >
-              I'm a creative professional from New York City.
+              I'm a frontend web developer.
             </StyledH2>
             <Typography
               component={motion.p}
@@ -194,7 +202,18 @@ export default function AboutPage() {
           </Box>
         </Grid>
 
-        <Grid item xs={12} sm={6} sx={{ p: 3 }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            padding: {
+              xs: '0rem 1.5rem 3rem',
+              sm: '0rem 2.5rem 3ren',
+              md: '3rem 3rem 4rem 1rem'
+            }
+          }}
+        >
           <StyledBoxWrap
             variants={parentVariants}
             initial="hidden"

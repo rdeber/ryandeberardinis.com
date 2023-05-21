@@ -101,7 +101,8 @@ export default function HomePage() {
               sm: '3rem 3rem 3rem',
               md: '6rem 1rem 4rem 3rem'
             }
-          }}>
+          }}
+        >
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -143,7 +144,8 @@ export default function HomePage() {
               sm: '0rem 2.5rem 3ren',
               md: '3rem 3rem 4rem 1rem'
             }
-          }}>
+          }}
+        >
           <motion.div
             initial={{
               opacity: 0,

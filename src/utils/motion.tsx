@@ -55,7 +55,8 @@ export const skillsVariants = {
   },
   visible: {
     transition: {
-      staggerChildren: 0.05
+      staggerChildren: 0.05,
+      delayChildren: 0.5
     }
   }
 };
