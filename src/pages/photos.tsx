@@ -44,16 +44,15 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED, placeholder: BLURRED)
-              fixed(width: 200) {
-                ...GatsbyImageSharpFixed
-              }
+              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 75)
+              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 75)
             }
             name
           }
         }
       }
     }
+
   `);
 
   // Build the photos data object
@@ -62,6 +61,8 @@ export default function AboutPage() {
       node: {
         name: string;
         childImageSharp: {
+          photo: any;
+          thumbnail: any;
           fixed: any
           gatsbyImageData: ImageDataLike
         };
@@ -70,12 +71,11 @@ export default function AboutPage() {
     const imageName = edge.node.name; // Get the image name
     const parsedName = imageName.replace(/-/g, ' '); // Remove dashes from the name
     return {
-      thumbnailURL: edge.node.childImageSharp.fixed.src,
-      // image: getImage(edge.node.childImageSharp.gatsbyImageData),
-      largeURL: edge.node.childImageSharp.gatsbyImageData.images.fallback.src,
-      srcSet: edge.node.childImageSharp.gatsbyImageData.images.sources[0].srcSet,
-      width: edge.node.childImageSharp.gatsbyImageData.width,
-      height: edge.node.childImageSharp.gatsbyImageData.height,
+      thumbnailURL: edge.node.childImageSharp.thumbnail.images.fallback.src,
+      largeURL: edge.node.childImageSharp.photo.images.fallback.src,
+      srcSet: edge.node.childImageSharp.photo.images.sources[0].srcSet,
+      width: edge.node.childImageSharp.photo.width,
+      height: edge.node.childImageSharp.photo.height,
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
@@ -128,11 +128,20 @@ export default function AboutPage() {
             variants={photoParent}
             initial="hidden"
             animate={'visible'}
+            className="pswp-gallery"
+            id='my-test-gallery'
           >
-            <PhotoGallery
-              galleryID="my-test-gallery"
-              images={images}
-            />
+            {images.map((image: any, index: number) => (
+              <PhotoGallery
+                // galleryID="my-test-gallery"
+                alt={image.alt}
+                largeURL={image.largeURL}
+                thumbnailURL={image.thumbnailURL}
+                datapswpwidth={image.width}
+                datapswpheight={image.height}
+                key={'photo-' + index}
+              />
+            ))}
             {/* {images.map((image: any, index: number) => (
               <motion.div variants={photoChild}>
                 <SimpleGallery
