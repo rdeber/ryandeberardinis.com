@@ -43,19 +43,29 @@ const config: GatsbyConfig = {
       resolve: `gatsby-source-filesystem`,
       options: {
         // The unique name for each instance
+        name: `photos`,
+        // Path to the directory
+        path: `${__dirname}/src/images/photos/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        // The unique name for each instance
+        name: `work`,
+        // Path to the directory
+        path: `${__dirname}/src/images/work/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        // The unique name for each instance
         name: `images`,
         // Path to the directory
         path: `${__dirname}/src/images/`,
       },
     },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     "name": "work",
-    //     "path": "./src/images/work",
-    //   },
-    //   __key: "images",
-    // },
   ],
 };
 

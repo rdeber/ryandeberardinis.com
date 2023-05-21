@@ -72,3 +72,31 @@ export const skillsChildVariants = {
     transition: { type: "spring", stiffness: 100 }
   }
 };
+
+// Skills chips
+export const photoParent = {
+  hidden: {
+    transition: {
+      staggerChildren: 0.7,
+      staggerDirection: -1
+    }
+  },
+  visible: {
+    transition: {
+      staggerChildren: 0.05
+    }
+  }
+};
+
+export const photoChild = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+    transition: { type: "spring", stiffness: 100 }
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { type: "spring", stiffness: 100 }
+  }
+};

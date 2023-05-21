@@ -10,10 +10,13 @@ import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
 import Masonry from '@mui/lab/Masonry';
 import {
-  childVariants, parentVariants,
+  childVariants, parentVariants, photoParent, photoChild,
 } from '../utils/motion';
 import { GatsbyImage, ImageDataLike, StaticImage, getImage } from 'gatsby-plugin-image';
 import { graphql, useStaticQuery } from 'gatsby';
+import { Gallery, Item } from 'react-photoswipe-gallery';
+import Photos from '../components/Photos';
+import SimpleGallery from '../components/Photos';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -35,7 +38,7 @@ const StyledH2 = styled(Typography)`
 export default function AboutPage() {
   const data = useStaticQuery(graphql`
     query {
-      allFile(filter: { sourceInstanceName: { eq: "images/work" } }) {
+      allFile(filter: { sourceInstanceName: { eq: "photos" } }) {
         edges {
           node {
             childImageSharp {
@@ -61,8 +64,39 @@ export default function AboutPage() {
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
+  console.log(images);
   return (
     <>
+      {/* <Photos /> */}
+      <SimpleGallery
+        galleryID="my-test-gallery"
+        images={[
+          {
+            largeURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg',
+            thumbnailURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg',
+            width: 1875,
+            height: 2500,
+          },
+          {
+            largeURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg',
+            thumbnailURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg',
+            width: 1669,
+            height: 2500,
+          },
+          {
+            largeURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg',
+            thumbnailURL:
+              'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg',
+            width: 2500,
+            height: 1666,
+          },
+        ]}
+      />
       <Grid
         container
         component="main"
@@ -74,7 +108,7 @@ export default function AboutPage() {
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
+        <Grid item xs={12} sm={6} sx={{ p: {xs: 2, sm: 6} }}>
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -99,17 +133,29 @@ export default function AboutPage() {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sm={6} sx={{ p: 3 }}>
-          <Masonry columns={3} spacing={2}>
-            {console.log(images)}
-          {images.map((image: any, index: number) => (
-            <GatsbyImage
-              key={index}
-              image={image.image}
-              alt={image.alt}
-              style={{ width: '100%', height: 'auto' }}
-            />
-          ))}
+        <Grid item xs={12} sm={6}>
+          <Masonry
+            columns={3}
+            spacing={2}
+            component={motion.div}
+            variants={photoParent}
+            initial="hidden"
+            animate={'visible'}
+          >
+            {images.map((image: any, index: number) => (
+              <motion.div variants={photoChild}>
+                {/* <SimpleGallery
+                  galleryID="my-test-gallery"
+                  images={image.image}
+                /> */}
+                {/* <GatsbyImage
+                  key={index}
+                  image={image.image}
+                  alt={image.alt}
+                  // style={{ width: '100%', height: 'auto' }}
+                /> */}
+              </motion.div>
+            ))}
           </Masonry>
         </Grid>
       </Grid>
