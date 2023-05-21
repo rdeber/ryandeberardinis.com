@@ -10,12 +10,13 @@ import "@fontsource/raleway/900.css";
 import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Send } from '@mui/icons-material';
+import { Directions, Send } from '@mui/icons-material';
 import ContactForm from '../components/ContactForm';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import MailIcon from '@mui/icons-material/Mail';
 import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
+import { childVariants, parentVariants } from '../utils/motion';
 
 // --cardShadowXSmall: 0 2px 5px -1px rgba(50,50,93,0.25),0 1px 3px -1px rgba(0,0,0,0.3);
 // --cardShadowSmall: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
@@ -74,33 +75,6 @@ const StyledH2 = styled(Typography)`
   }
 `;
 
-const parentVariants = {
-  hidden: {
-    transition: {
-      staggerChildren: 0.1,
-      staggerDirection: -1
-    }
-  },
-  visible: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const childVariants = {
-  hidden: {
-    opacity: 0,
-    x: -16,
-    transition: { type: "spring", stiffness: 100 }
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { type: "spring", stiffness: 100 }
-  }
-};
-
 export default function HomePage() {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -117,7 +91,17 @@ export default function HomePage() {
           minHeight: '100vh'
         }}
       >
-        <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            padding: {
+              xs: '2rem 1.5rem',
+              sm: '3rem 3rem 3rem',
+              md: '6rem 1rem 4rem 3rem'
+            }
+          }}>
           <motion.div
             variants={parentVariants}
             initial="hidden"
@@ -147,29 +131,19 @@ export default function HomePage() {
             >
               Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
             </Typography>
-            <Tooltip title="Contact Me">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <DeleteTwoTone />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Contact Me">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <DeleteTwoTone />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Contact Me">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <DeleteTwoTone />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Contact Me">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <DeleteTwoTone />
-              </IconButton>
-            </Tooltip>
           </motion.div>
         </Grid>
-        <Grid item xs={12} md={6} sx={{ p: {xs: 2, sm: 6} }}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            padding: {
+              xs: '0rem 1.5rem 3rem',
+              sm: '0rem 2.5rem 3ren',
+              md: '3rem 3rem 4rem 1rem'
+            }
+          }}>
           <motion.div
             initial={{
               opacity: 0,
@@ -183,7 +157,6 @@ export default function HomePage() {
                 ? 'perspective(75rem) rotateX(8deg)'
                 : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
             }}
-            // transition={{ duration: 0.5 }}
             transition={{ type: "spring", stiffness: 100 }}
           >
             <ContactForm />
