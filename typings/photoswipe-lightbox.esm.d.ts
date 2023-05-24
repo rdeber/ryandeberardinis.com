@@ -1,1 +1,0 @@
-declare module 'photoswipe/dist/photoswipe-lightbox.esm.js';

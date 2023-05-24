@@ -6,6 +6,7 @@ import { styled } from '@mui/material/styles';
 import { motion } from "framer-motion"
 import "@fontsource/raleway/300.css";
 import "@fontsource/raleway/400.css";
+import "@fontsource/raleway/700.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
@@ -30,12 +31,33 @@ const StyledH1 = styled(Typography)`
 const StyledH2 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 400;
-  font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
+  font-size: clamp(1.3rem, 2.5vw + .5rem, 2rem);
   margin: 0.5rem 0 1rem;
   color: ${theme.palette.secondary.main};
 
   ${props => props.theme.breakpoints.up("md")} {
-    font-size: clamp(1.1rem, 1.35vw + .5rem, 5rem);
+    font-size: clamp(1.25rem, 1.75vw + .5rem, 5rem);
+  }
+`;
+
+const StyledH3 = styled(Typography)`
+margin: 2rem 0 1rem 0;
+font-family: 'Raleway';
+font-weight: 700;
+font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
+color: ${theme.palette.primary.main};
+`;
+
+const StyledSkills = styled(Box)`
+  max-width: 450px;
+
+  ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ${props => props.theme.breakpoints.up("md")} {
   }
 `;
 
@@ -116,6 +138,10 @@ const StyledBoxInner = styled(Box)`
   height: 100%;
 `;
 
+const skills = [
+
+]
+
 export default function AboutPage() {
   return (
     <>
@@ -168,38 +194,39 @@ export default function AboutPage() {
               variants={childVariants}
               variant="body1"
             >
-              My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies. When I’m not writing code and pushing pixels, you can often find me photographing the streets of New York City. I'm currently working as lead front end developer for Remote-Learner.
+              My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies.
             </Typography>
-          </motion.div>
-          <Box>
-            <Typography
-              component={motion.p}
+            <StyledH3
+              // @ts-expect-error
+              component={motion.h3}
               variants={childVariants}
               variant="body1"
             >
               My skills:
-            </Typography>
-              <Grid
-                container
-                spacing={1}
-                component={motion.div}
-                variants={skillsVariants}
-                initial="hidden"
-                animate={'visible'}
-                >
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="HTML5" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="CSS" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Javascript" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Accessibility" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WCAG" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WAI-ARIA" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="UX/UI" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="React" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Typescript" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Gatsby" color='primary'/></Grid>
-                <Grid item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Material UI" color='primary'/></Grid>
+            </StyledH3>
+          </motion.div>
+          <StyledSkills>
+            <Grid
+              container
+              spacing={1}
+              component={motion.ul}
+              variants={skillsVariants}
+              initial="hidden"
+              animate={'visible'}
+            >
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="HTML5" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="CSS" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Javascript" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Accessibility" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WCAG" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WAI-ARIA" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="UX/UI" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="React" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Typescript" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Gatsby" color='primary' /></Grid>
+              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Material UI" color='primary' /></Grid>
             </Grid>
-          </Box>
+          </StyledSkills>
         </Grid>
 
         <Grid
