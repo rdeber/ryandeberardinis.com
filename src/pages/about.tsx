@@ -16,7 +16,7 @@ import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import {
   childVariants, parentVariants,
-  skillsChildVariants, skillsVariants, workVariants
+  skillsChildVariants, skillsVariants, workParent, workChild
 } from '../utils/motion';
 
 const StyledH1 = styled(Typography)`
@@ -80,6 +80,7 @@ const StyledBox = styled(motion.div)`
 
   &:nth-of-type(1) {
     top: 320px;
+    left: 100px;
     width: 15rem;
     height: 11rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
@@ -87,46 +88,55 @@ const StyledBox = styled(motion.div)`
                 0 18px 36px -18px rgba(0,0,0,0.3);
   }
   &:nth-of-type(2) {
-    top: 120px;
-    width: 80%;
-    width: 15rem;
-    height: 10rem;
+    top: 190px;
+    left: 330px;
+    width: 20rem;
+    height: 16rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
                 0 30px 60px -12px rgba(50,50,93,0.25),
                 0 18px 36px -18px rgba(0,0,0,0.3);
   }
   &:nth-of-type(3) {
-    top: 20px;
-    width: 85%;
+    top: 40px;
+    left: 190px;
     width: 20rem;
-    height: 10rem;
+    height: 15rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
                 0 50px 100px -20px rgba(50,50,93,0.25),
                 0 30px 60px -30px rgba(0,0,0,0.3);
   }
   &:nth-of-type(4) {
-    top: -120px;
-    width: 85%;
-    width: 25rem;
-    height: 15rem;
+    top: 200px;
+    left: 35px;
+    width: 13rem;
+    height: 11rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
                 0 50px 100px -20px rgba(50,50,93,0.25),
                 0 30px 60px -30px rgba(0,0,0,0.3);
   }
   &:nth-of-type(5) {
-    top: -120px;
-    width: 90%;
-    width: 27rem;
-    height: 15rem;
+    top: 190px;
+    left: 155px;
+    width: 15rem;
+    height: 11rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
                 0 50px 100px -20px rgba(50,50,93,0.25),
                 0 30px 60px -30px rgba(0,0,0,0.3);
   }
   &:nth-of-type(6) {
-    top: -120px;
-    width: 90%;
-    width: 27rem;
-    height: 15rem;
+    top: -65px;
+    left: -20px;
+    width: 19rem;
+    height: 14rem;
+    box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
+                0 50px 100px -20px rgba(50,50,93,0.25),
+                0 30px 60px -30px rgba(0,0,0,0.3);
+  }
+  &:nth-of-type(7) {
+    top: -170px;
+    left: 120px;
+    width: 19rem;
+    height: 18rem;
     box-shadow: inset 1px -2px 3px rgba(50,50,93,0.25),
                 0 50px 100px -20px rgba(50,50,93,0.25),
                 0 30px 60px -30px rgba(0,0,0,0.3);
@@ -242,11 +252,11 @@ export default function AboutPage() {
           }}
         >
           <StyledBoxWrap
-            variants={parentVariants}
+            variants={workParent}
             initial="hidden"
             animate={'visible'}
           >
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-1.jpg"
@@ -257,7 +267,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-2.jpg"
@@ -268,7 +278,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-3.jpg"
@@ -279,7 +289,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-4.jpg"
@@ -290,7 +300,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-5.jpg"
@@ -301,7 +311,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-6.jpg"
@@ -312,7 +322,7 @@ export default function AboutPage() {
                 />
               </StyledBoxInner>
             </StyledBox>
-            <StyledBox variants={workVariants}>
+            <StyledBox variants={workChild}>
               <StyledBoxInner>
                 <StaticImage
                   src="../images/work/project-7.jpg"

@@ -39,6 +39,12 @@ const StyledBox = styled(motion.div)`
               0 18px 36px -18px rgba(0,0,0,0.3);
   border-radius: 4px;
   overflow: hidden;
+
+  // Fix bottom gap in photo component
+  // a {
+  //   display: block;
+  //   line-height: 0;
+  // }
 `;
 
 export default function AboutPage() {
@@ -127,44 +133,47 @@ export default function AboutPage() {
         </Grid>
 
         <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
-          <Masonry
-            columns={{ xs: 2, sm: 3, md:4 }}
-            spacing={2}
-            component={motion.div}
+          <motion.div
             variants={photoParent}
             initial="hidden"
             animate={'visible'}
-            className="pswp-gallery"
-            id='my-test-gallery'
           >
-            {images.map((image: any, index: number) => (
-              <StyledBox variants={photoChild}>
-                <Photo
-                  alt={image.alt}
-                  largeURL={image.largeURL}
-                  srcSet={image.srcSet}
-                  thumbnailURL={image.thumbnailURL}
-                  datapswpwidth={image.width}
-                  datapswpheight={image.height}
-                  key={'photo-' + index}
-                />
-              </StyledBox>
-            ))}
-            {/* {images.map((image: any, index: number) => (
-              <motion.div variants={photoChild}>
-                <SimpleGallery
-                  galleryID="my-test-gallery"
-                  images={image.image}
-                />
-                <GatsbyImage
-                  key={index}
-                  image={image.image}
-                  alt={image.alt}
-                  // style={{ width: '100%', height: 'auto' }}
-                />
-              </motion.div>
-            ))} */}
-          </Masonry>
+            <Masonry
+              columns={{ xs: 2, sm: 3, md:4 }}
+              spacing={2}
+              className="pswp-gallery"
+              id='my-test-gallery'
+            >
+              {images.map((image: any, index: number) => (
+                <StyledBox variants={photoChild}>
+                  <Photo
+                    alt={image.alt}
+                    largeURL={image.largeURL}
+                    srcSet={image.srcSet}
+                    thumbnailURL={image.thumbnailURL}
+                    datapswpwidth={image.width}
+                    datapswpheight={image.height}
+                    key={'photo-' + index}
+                  />
+                </StyledBox>
+              ))}
+
+              {/* {images.map((image: any, index: number) => (
+                <motion.div variants={photoChild}>
+                  <SimpleGallery
+                    galleryID="my-test-gallery"
+                    images={image.image}
+                  />
+                  <GatsbyImage
+                    key={index}
+                    image={image.image}
+                    alt={image.alt}
+                    // style={{ width: '100%', height: 'auto' }}
+                  />
+                </motion.div>
+              ))} */}
+            </Masonry>
+          </motion.div>
         </Grid>
       </Grid>
     </>

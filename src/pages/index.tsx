@@ -130,7 +130,7 @@ export default function HomePage() {
               variants={childVariants}
               variant="body1"
             >
-              Experienced frontend developer and accessibility specialist with a proven track record of creating intuitive and accessible user experiences using the latest web technologies. Skilled in developing design systems that streamline workflows and improve user engagement, while ensuring compliance with WCAG standards. Passionate about driving innovation and solving complex design challenges through collaboration and user-centered design principles.
+              Experienced frontend developer and accessibility specialist with a passion for creating intuitive and accessible user experiences using the latest web technologies.
             </Typography>
           </motion.div>
         </Grid>
