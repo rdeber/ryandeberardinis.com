@@ -35,16 +35,20 @@ const StyledH2 = styled(Typography)`
 
 const StyledBox = styled(motion.div)`
   background: #fff;
-  box-shadow: 0 30px 60px -12px rgba(50,50,93,0.25),
-              0 18px 36px -18px rgba(0,0,0,0.3);
-  border-radius: 4px;
+  box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
+              0 3px 7px -3px rgba(0,0,0,0.3);
+  border-radius: 7px;
+  padding: .5rem;
   overflow: hidden;
 
-  // Fix bottom gap in photo component
-  // a {
-  //   display: block;
-  //   line-height: 0;
-  // }
+  a {
+    border-radius: 5px;
+    overflow: hidden;
+
+    // Fix bottom gap in photo component
+    display: block;
+    line-height: 0;
+  }
 `;
 
 export default function AboutPage() {
@@ -52,19 +56,18 @@ export default function AboutPage() {
   // and generated the sizes and data.
   const data = useStaticQuery(graphql`
     query {
-      allFile(filter: { sourceInstanceName: { eq: "photos" } }) {
+      allFile(filter: {sourceInstanceName: {eq: "photos"}}, sort: {name: ASC}) {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 400, quality: 75)
-              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 75)
+              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 400, quality: 97)
+              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 79)
             }
             name
           }
         }
       }
     }
-
   `);
 
   // Build the photos data object
@@ -104,7 +107,8 @@ export default function AboutPage() {
           maxWidth: '1440px',
           height: '100%',
           margin: '0 auto',
-          minHeight: '100vh'
+          minHeight: '100vh',
+          overflow: 'hidden'
         }}
       >
         <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
@@ -132,30 +136,37 @@ export default function AboutPage() {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
+        <Grid item xs={12} sx={{ p: { xs: 1, sm: 2 } }}>
           <motion.div
             variants={photoParent}
             initial="hidden"
             animate={'visible'}
           >
             <Masonry
-              columns={{ xs: 2, sm: 3, md:4 }}
-              spacing={2}
+              columns={{ xs: 2, sm: 3, md: 3, lg: 4 }}
+              spacing={{ xs: 1, sm: 2, md: 4, lg: 3 }}
+              style={{ margin: 0 }}
               className="pswp-gallery"
               id='my-test-gallery'
             >
               {images.map((image: any, index: number) => (
-                <StyledBox variants={photoChild}>
-                  <Photo
-                    alt={image.alt}
-                    largeURL={image.largeURL}
-                    srcSet={image.srcSet}
-                    thumbnailURL={image.thumbnailURL}
-                    datapswpwidth={image.width}
-                    datapswpheight={image.height}
-                    key={'photo-' + index}
-                  />
-                </StyledBox>
+                <motion.div
+                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.025 }}
+                  whileFocus={{ scale: 1.025 }}
+                >
+                  <StyledBox variants={photoChild}>
+                    <Photo
+                      alt={image.alt}
+                      largeURL={image.largeURL}
+                      srcSet={image.srcSet}
+                      thumbnailURL={image.thumbnailURL}
+                      datapswpwidth={image.width}
+                      datapswpheight={image.height}
+                      key={'photo-' + index}
+                    />
+                  </StyledBox>
+                </motion.div>
               ))}
 
               {/* {images.map((image: any, index: number) => (

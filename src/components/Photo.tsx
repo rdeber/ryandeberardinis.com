@@ -22,6 +22,8 @@ const Photo = (
     let lightbox = new PhotoSwipeLightbox({
       gallery: '#my-test-gallery',
       children: 'a',
+      initialZoomLevel: 'fit',
+      secondaryZoomLevel: 'fit',
       pswpModule: () => import('photoswipe'),
     });
     lightbox.init();

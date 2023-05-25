@@ -163,7 +163,8 @@ export default function AboutPage() {
           maxWidth: '1440px',
           height: '100%',
           margin: '0 auto',
-          minHeight: '100vh'
+          minHeight: '100vh',
+          overflow: 'hidden'
         }}
       >
         <Grid
