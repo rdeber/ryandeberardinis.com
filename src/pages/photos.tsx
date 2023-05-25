@@ -37,13 +37,12 @@ const StyledBox = styled(motion.div)`
   background: #fff;
   box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
               0 3px 7px -3px rgba(0,0,0,0.3);
-  border-radius: 7px;
-  padding: .5rem;
+  border-radius: 15px;
   overflow: hidden;
 
   a {
-    border-radius: 5px;
-    overflow: hidden;
+    // border-radius: 15px;
+    // overflow: hidden;
 
     // Fix bottom gap in photo component
     display: block;
@@ -60,7 +59,7 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 400, quality: 97)
+              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 800, quality: 97)
               photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 79)
             }
             name
@@ -99,77 +98,68 @@ export default function AboutPage() {
 
   return (
     <>
-      <Grid
-        container
-        component="main"
-        sx={{
-          backgroundColor: '#e3e7ec',
-          maxWidth: '1440px',
-          height: '100%',
-          margin: '0 auto',
-          minHeight: '100vh',
-          overflow: 'hidden'
-        }}
-      >
-        <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
-          <motion.div
-            variants={parentVariants}
-            initial="hidden"
-            animate={'visible'}
+      <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
+        <motion.div
+          variants={parentVariants}
+          initial="hidden"
+          animate={'visible'}
+        >
+          <StyledH1
+            // @ts-expect-error
+            component={motion.h1}
+            variants={childVariants}
+            variant="h1"
           >
-            <StyledH1
-              // @ts-expect-error
-              component={motion.h1}
-              variants={childVariants}
-              variant="h1"
-            >
-              <span>Photos</span>
-            </StyledH1>
-            <StyledH2
-              // @ts-expect-error
-              component={motion.h2}
-              variants={childVariants}
-              variant="h2"
-            >
-              Coming soon...
-            </StyledH2>
-          </motion.div>
-        </Grid>
-
-        <Grid item xs={12} sx={{ p: { xs: 1, sm: 2 } }}>
-          <motion.div
-            variants={photoParent}
-            initial="hidden"
-            animate={'visible'}
+            <span>Photos</span>
+          </StyledH1>
+          <StyledH2
+            // @ts-expect-error
+            component={motion.h2}
+            variants={childVariants}
+            variant="h2"
           >
-            <Masonry
-              columns={{ xs: 2, sm: 3, md: 3, lg: 4 }}
-              spacing={{ xs: 1, sm: 2, md: 4, lg: 3 }}
-              style={{ margin: 0 }}
-              className="pswp-gallery"
-              id='my-test-gallery'
-            >
-              {images.map((image: any, index: number) => (
-                <motion.div
-                  whileTap={{ scale: 0.97 }}
-                  whileHover={{ scale: 1.025 }}
-                  whileFocus={{ scale: 1.025 }}
-                >
-                  <StyledBox variants={photoChild}>
-                    <Photo
-                      alt={image.alt}
-                      largeURL={image.largeURL}
-                      srcSet={image.srcSet}
-                      thumbnailURL={image.thumbnailURL}
-                      datapswpwidth={image.width}
-                      datapswpheight={image.height}
-                      key={'photo-' + index}
-                    />
-                  </StyledBox>
-                </motion.div>
-              ))}
+            Coming soon...
+          </StyledH2>
+        </motion.div>
+      </Grid>
 
-              {/* {images.map((image: any, index: number) => (
+      <Grid item xs={12} sx={{ p: { xs: 1, sm: 2 } }}>
+        <motion.div
+          variants={photoParent}
+          initial="hidden"
+          animate={'visible'}
+        >
+          <Masonry
+            columns={{ xs: 2, sm: 3, md: 3, lg: 4 }}
+            spacing={{ xs: 1, sm: 2, md: 4, lg: 3 }}
+            style={{ margin: 0 }}
+            className="pswp-gallery"
+            id='my-test-gallery'
+          >
+            {images.map((image: any, index: number) => (
+              <motion.div
+                // whileTap={{ scale: 0.97 }}
+                whileHover={{ scale: 1.025 }}
+                whileFocus={{ scale: 1.025 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+              >
+                <StyledBox variants={photoChild}>
+                  <Photo
+                    alt={image.alt}
+                    largeURL={image.largeURL}
+                    srcSet={image.srcSet}
+                    thumbnailURL={image.thumbnailURL}
+                    datapswpwidth={image.width}
+                    datapswpheight={image.height}
+                    key={'photo-' + index}
+                  />
+                </StyledBox>
+              </motion.div>
+            ))}
+
+            {/* {images.map((image: any, index: number) => (
                 <motion.div variants={photoChild}>
                   <SimpleGallery
                     galleryID="my-test-gallery"
@@ -183,9 +173,8 @@ export default function AboutPage() {
                   />
                 </motion.div>
               ))} */}
-            </Masonry>
-          </motion.div>
-        </Grid>
+          </Masonry>
+        </motion.div>
       </Grid>
     </>
   );

@@ -43,7 +43,6 @@ export const workChild = {
   hidden: {
     opacity: 0,
     y: -50,
-    // scale: .5,
     rotateX: 35,
     rotateZ: -23,
     transition: { type: "spring", stiffness: 100 }
@@ -51,7 +50,6 @@ export const workChild = {
   visible: {
     opacity: 1,
     y: 0,
-    // scale: 1,
     rotateX: 45,
     rotateZ: -33,
     transition: { type: "spring", stiffness: 100 }
@@ -97,7 +95,7 @@ export const photoParent = {
   },
   visible: {
     transition: {
-      staggerChildren: 0.05
+      staggerChildren: 0.133
     }
   }
 };

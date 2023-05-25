@@ -81,89 +81,77 @@ export default function HomePage() {
   return (
     <>
       <Grid
-        container
-        component="main"
+        item
+        xs={12}
+        md={6}
         sx={{
-          backgroundColor: '#e3e7ec',
-          maxWidth: '1440px',
-          height: '100%',
-          margin: '0 auto',
-          minHeight: '100vh'
+          padding: {
+            xs: '2rem 1.5rem',
+            sm: '3rem 3rem 3rem',
+            md: '6rem 1rem 4rem 3rem'
+          }
         }}
       >
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            padding: {
-              xs: '2rem 1.5rem',
-              sm: '3rem 3rem 3rem',
-              md: '6rem 1rem 4rem 3rem'
-            }
-          }}
+        <motion.div
+          variants={parentVariants}
+          initial="hidden"
+          animate={'visible'}
         >
-          <motion.div
-            variants={parentVariants}
-            initial="hidden"
-            animate={'visible'}
+          <StyledH1
+            // @ts-expect-error
+            component={motion.h1}
+            variants={childVariants}
+            variant="h1"
           >
-            <StyledH1
-              // @ts-expect-error
-              component={motion.h1}
-              variants={childVariants}
-              variant="h1"
-            >
-              <div>RYAN </div>
-              <div>DeBERARDINIS</div>
-            </StyledH1>
-            <StyledH2
-              // @ts-expect-error
-              component={motion.h2}
-              variants={childVariants}
-              variant="h2"
-            >
-              Developer + Designer + Photographer
-            </StyledH2>
-            <Typography
-              component={motion.p}
-              variants={childVariants}
-              variant="body1"
-            >
-              Experienced frontend developer and accessibility specialist with a passion for creating intuitive and accessible user experiences using the latest web technologies.
-            </Typography>
-          </motion.div>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            padding: {
-              xs: '0rem 1.5rem 3rem',
-              sm: '0rem 2.5rem 3ren',
-              md: '3rem 3rem 4rem 1rem'
-            }
+            <div>RYAN </div>
+            <div>DeBERARDINIS</div>
+          </StyledH1>
+          <StyledH2
+            // @ts-expect-error
+            component={motion.h2}
+            variants={childVariants}
+            variant="h2"
+          >
+            Developer + Designer + Photographer
+          </StyledH2>
+          <Typography
+            component={motion.p}
+            variants={childVariants}
+            variant="body1"
+          >
+            Experienced frontend developer and accessibility specialist with a passion for creating intuitive and accessible user experiences using the latest web technologies.
+          </Typography>
+        </motion.div>
+      </Grid>
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{
+          padding: {
+            xs: '0rem 1.5rem 3rem',
+            sm: '0rem 2.5rem 3ren',
+            md: '3rem 3rem 4rem 1rem'
+          }
+        }}
+      >
+        <motion.div
+          initial={{
+            opacity: 0,
+            transform: matches
+              ? 'perspective(25rem) rotateY(0) rotateX(0) rotate(0)'
+              : 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
           }}
+          animate={{
+            opacity: 1,
+            transform: matches
+              ? 'perspective(75rem) rotateX(8deg)'
+              : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
+          }}
+          transition={{ type: "spring", stiffness: 100 }}
         >
-          <motion.div
-            initial={{
-              opacity: 0,
-              transform: matches
-                ? 'perspective(25rem) rotateY(0) rotateX(0) rotate(0)'
-                : 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
-            }}
-            animate={{
-              opacity: 1,
-              transform: matches
-                ? 'perspective(75rem) rotateX(8deg)'
-                : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
-            }}
-            transition={{ type: "spring", stiffness: 100 }}
-          >
-            <ContactForm />
-          </motion.div>
-        </Grid>
+          <ContactForm />
+        </motion.div>
       </Grid>
     </>
   );

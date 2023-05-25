@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion"
 import "@fontsource/raleway/300.css";
 import "@fontsource/raleway/400.css";
@@ -10,14 +10,14 @@ import "@fontsource/raleway/700.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
-import Masonry from '@mui/lab/Masonry';
 import { StaticImage } from "gatsby-plugin-image"
-import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import {
   childVariants, parentVariants,
-  skillsChildVariants, skillsVariants, workParent, workChild
+  skillsChildVariants, skillsVariants
 } from '../utils/motion';
+import { useMediaQuery } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -148,194 +148,211 @@ const StyledBoxInner = styled(Box)`
   height: 100%;
 `;
 
-const skills = [
-
-]
-
 export default function AboutPage() {
+  const theme = useTheme()
+  const isMediumAndUp = useMediaQuery(theme.breakpoints.up('md'))
+
+  const workParent = {
+    hidden: {
+      transition: {
+        staggerChildren: 0.7,
+        staggerDirection: -1
+      }
+    },
+    visible: {
+      transition: {
+        staggerChildren: 0.05,
+      }
+    }
+  };
+
+  const workChild = {
+    hidden: {
+      opacity: 0,
+      y: -50,
+      rotateX: isMediumAndUp ? 40 : 0,
+      rotateZ: isMediumAndUp ? -30 : 0,
+      transition: { type: "spring", stiffness: 100 }
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: isMediumAndUp ? 45 : 0,
+      rotateZ: isMediumAndUp ? -33 : 0,
+      transition: { type: "spring", stiffness: 100 }
+    }
+  };
+
   return (
     <>
       <Grid
-        container
-        component="main"
+        item
+        xs={12}
+        md={6}
         sx={{
-          backgroundColor: '#e3e7ec',
-          maxWidth: '1440px',
-          height: '100%',
-          margin: '0 auto',
-          minHeight: '100vh',
-          overflow: 'hidden'
+          padding: {
+            xs: '2rem 1.5rem',
+            sm: '3rem 3rem 3rem',
+            md: '6rem 1rem 4rem 3rem'
+          }
         }}
       >
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            padding: {
-              xs: '2rem 1.5rem',
-              sm: '3rem 3rem 3rem',
-              md: '6rem 1rem 4rem 3rem'
-            }
-          }}
+        <motion.div
+          variants={parentVariants}
+          initial="hidden"
+          animate={'visible'}
         >
-          <motion.div
-            variants={parentVariants}
+          <StyledH1
+            // @ts-expect-error
+            component={motion.h1}
+            variants={childVariants}
+            variant="h1"
+          >
+            <span>Hello</span>
+          </StyledH1>
+          <StyledH2
+            // @ts-expect-error
+            component={motion.h2}
+            variants={childVariants}
+            variant="h2"
+          >
+            I'm a frontend web developer.
+          </StyledH2>
+          <Typography
+            component={motion.p}
+            variants={childVariants}
+            variant="body1"
+          >
+            My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies.
+          </Typography>
+          <StyledH3
+            // @ts-expect-error
+            component={motion.h3}
+            variants={childVariants}
+            variant="body1"
+          >
+            My skills:
+          </StyledH3>
+        </motion.div>
+        <StyledSkills>
+          <Grid
+            container
+            spacing={1}
+            component={motion.ul}
+            variants={skillsVariants}
             initial="hidden"
             animate={'visible'}
           >
-            <StyledH1
-              // @ts-expect-error
-              component={motion.h1}
-              variants={childVariants}
-              variant="h1"
-            >
-              <span>Hello</span>
-            </StyledH1>
-            <StyledH2
-              // @ts-expect-error
-              component={motion.h2}
-              variants={childVariants}
-              variant="h2"
-            >
-              I'm a frontend web developer.
-            </StyledH2>
-            <Typography
-              component={motion.p}
-              variants={childVariants}
-              variant="body1"
-            >
-              My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies.
-            </Typography>
-            <StyledH3
-              // @ts-expect-error
-              component={motion.h3}
-              variants={childVariants}
-              variant="body1"
-            >
-              My skills:
-            </StyledH3>
-          </motion.div>
-          <StyledSkills>
-            <Grid
-              container
-              spacing={1}
-              component={motion.ul}
-              variants={skillsVariants}
-              initial="hidden"
-              animate={'visible'}
-            >
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="HTML5" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="CSS" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Javascript" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Accessibility" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WCAG" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WAI-ARIA" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="UX/UI" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="React" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Typescript" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Gatsby" color='primary' /></Grid>
-              <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Material UI" color='primary' /></Grid>
-            </Grid>
-          </StyledSkills>
-        </Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="HTML5" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="CSS" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Javascript" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Accessibility" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WCAG" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WAI-ARIA" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="UX/UI" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="React" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Typescript" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Gatsby" color='primary' /></Grid>
+            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Material UI" color='primary' /></Grid>
+          </Grid>
+        </StyledSkills>
+      </Grid>
 
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            padding: {
-              xs: '0rem 1.5rem 3rem',
-              sm: '0rem 2.5rem 3ren',
-              md: '3rem 3rem 4rem 1rem'
-            }
-          }}
+      <Grid
+        item
+        xs={12}
+        md={6}
+        sx={{
+          padding: {
+            xs: '0rem 1.5rem 3rem',
+            sm: '0rem 2.5rem 3ren',
+            md: '3rem 3rem 4rem 1rem'
+          }
+        }}
+      >
+        <StyledBoxWrap
+          variants={workParent}
+          initial="hidden"
+          animate={'visible'}
         >
-          <StyledBoxWrap
-            variants={workParent}
-            initial="hidden"
-            animate={'visible'}
-          >
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-1.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-2.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-3.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-4.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-5.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-6.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-            <StyledBox variants={workChild}>
-              <StyledBoxInner>
-                <StaticImage
-                  src="../images/work/project-7.jpg"
-                  alt=""
-                  placeholder="dominantColor"
-                  layout="constrained"
-                  objectFit='cover'
-                />
-              </StyledBoxInner>
-            </StyledBox>
-          </StyledBoxWrap>
-        </Grid>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-1.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-2.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-3.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-4.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-5.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-6.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+          <StyledBox variants={workChild}>
+            <StyledBoxInner>
+              <StaticImage
+                src="../images/work/project-7.jpg"
+                alt=""
+                placeholder="dominantColor"
+                layout="constrained"
+                objectFit='cover'
+              />
+            </StyledBoxInner>
+          </StyledBox>
+        </StyledBoxWrap>
       </Grid>
     </>
   );

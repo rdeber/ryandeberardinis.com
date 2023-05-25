@@ -101,7 +101,7 @@ export default function NavBar() {
     });
 
     if (!currentTab) {
-      throw new Error(`Could not find the current tab for location: ${location.pathname}`);
+      return
     }
 
     setSelectedTab(currentTab);

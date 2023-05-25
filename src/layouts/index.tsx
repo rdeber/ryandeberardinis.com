@@ -4,10 +4,25 @@ import { motion } from "framer-motion";
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from "../utils/theme";
+import { Grid } from "@mui/material";
 
 interface LayoutProps {
   children: ReactNode;
 }
+
+const StyledGrid = styled(Grid)`
+  background-color: #e3e7ec;
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  min-height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+
+  ${props => props.theme.breakpoints.up("md")} {
+    flex-direction: row;
+  }
+`;
 
 export default function Layout({ children }: LayoutProps) {
   return (
@@ -24,7 +39,11 @@ export default function Layout({ children }: LayoutProps) {
       >
         <NavBar />
       </motion.div>
-      {children}
+      <main>
+        <StyledGrid container>
+          {children}
+        </StyledGrid>
+      </main>
     </ThemeProvider>
   )
 }
