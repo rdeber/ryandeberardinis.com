@@ -12,7 +12,7 @@ import Masonry from '@mui/lab/Masonry';
 import {
   childVariants, parentVariants, photoParent, photoChild,
 } from '../utils/motion';
-import { ImageDataLike } from 'gatsby-plugin-image';
+import { GatsbyImage, ImageDataLike } from 'gatsby-plugin-image';
 import { graphql, useStaticQuery } from 'gatsby';
 import Photo from '../components/Photo';
 
@@ -59,8 +59,18 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 800, quality: 97)
-              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 79)
+              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 800, quality: 95)
+              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 80)
+            }
+            name
+          }
+        }
+      }
+      featured: allFile(filter: {sourceInstanceName: {eq: "featured"}}, sort: {name: ASC}) {
+        edges {
+          node {
+            childImageSharp {
+              featured: gatsbyImageData(layout: FIXED, width: 100, quality: 95)
             }
             name
           }
@@ -120,6 +130,15 @@ export default function AboutPage() {
           >
             Coming soon...
           </StyledH2>
+          {/* {data.featured.allFile.edges.map((image: any, index: number) => (
+            <motion.div>
+              <GatsbyImage
+                key={index}
+                image={image.image}
+                alt={image.alt}
+              />
+            </motion.div>
+          ))} */}
         </motion.div>
       </Grid>
 
@@ -131,7 +150,7 @@ export default function AboutPage() {
         >
           <Masonry
             columns={{ xs: 2, sm: 3, md: 3, lg: 4 }}
-            spacing={{ xs: 1, sm: 2, md: 4, lg: 3 }}
+            spacing={{ xs: 2, sm: 2, md: 4, lg: 3 }}
             style={{ margin: 0 }}
             className="pswp-gallery"
             id='my-test-gallery'

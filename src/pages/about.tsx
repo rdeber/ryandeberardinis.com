@@ -265,7 +265,7 @@ export default function AboutPage() {
         sx={{
           padding: {
             xs: '0rem 1.5rem 3rem',
-            sm: '0rem 2.5rem 3ren',
+            sm: '0rem 2.5rem 3rem',
             md: '3rem 3rem 4rem 1rem'
           }
         }}
