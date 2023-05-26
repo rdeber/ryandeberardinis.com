@@ -17,7 +17,6 @@ import {
   skillsChildVariants, skillsVariants
 } from '../utils/motion';
 import { useMediaQuery } from '@mui/material';
-import { useEffect, useState } from 'react';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';

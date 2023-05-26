@@ -128,7 +128,7 @@ export default function AboutPage() {
             variants={childVariants}
             variant="h2"
           >
-            Coming soon...
+            Featured on:
           </StyledH2>
           {/* {data.featured.allFile.edges.map((image: any, index: number) => (
             <motion.div>

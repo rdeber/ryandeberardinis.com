@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
-import { motion, transform } from "framer-motion"
+import { styled } from '@mui/material/styles';
+import { motion } from "framer-motion"
 import "@fontsource/raleway/300.css";
 import "@fontsource/raleway/400.css";
 import "@fontsource/raleway/800.css";
@@ -10,32 +10,8 @@ import "@fontsource/raleway/900.css";
 import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { Directions, Send } from '@mui/icons-material';
 import ContactForm from '../components/ContactForm';
-import Tooltip from '@mui/material/Tooltip';
-import IconButton from '@mui/material/IconButton';
-import MailIcon from '@mui/icons-material/Mail';
-import DeleteTwoTone from '@mui/icons-material/DeleteTwoTone';
 import { childVariants, parentVariants } from '../utils/motion';
-
-// --cardShadowXSmall: 0 2px 5px -1px rgba(50,50,93,0.25),0 1px 3px -1px rgba(0,0,0,0.3);
-// --cardShadowSmall: 0 6px 12px -2px rgba(50,50,93,0.25),0 3px 7px -3px rgba(0,0,0,0.3);
-// --cardShadowMedium: 0 13px 27px -5px rgba(50,50,93,0.25),0 8px 16px -8px rgba(0,0,0,0.3);
-// --cardShadowLarge: 0 30px 60px -12px rgba(50,50,93,0.25),0 18px 36px -18px rgba(0,0,0,0.3);
-// --cardShadowLargeInset: inset 0 30px 60px -12px rgba(50,50,93,0.25),inset 0 18px 36px -18px rgba(0,0,0,0.3);
-// --cardShadowXLarge: 0 50px 100px -20px rgba(50,50,93,0.25),0 30px 60px -30px rgba(0,0,0,0.3);
-// --stripeAccentLight: #e3e7ec;
-// --stripeAccentDark: #0a2540;
-
-// <!-- Google tag (gtag.js) -->
-// <script async src="https://www.googletagmanager.com/gtag/js?id=G-8MRTZQJE21"></script>
-// <script>
-//   window.dataLayer = window.dataLayer || [];
-//   function gtag(){dataLayer.push(arguments);}
-//   gtag('js', new Date());
-
-//   gtag('config', 'G-8MRTZQJE21');
-// </script>
 
 const StyledBackground = styled('div')`
   position: fixed;
