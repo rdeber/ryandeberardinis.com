@@ -26,16 +26,12 @@ export function Head() {
 }
 
 const StyledH1 = styled(Typography)`
-  font-family: 'Raleway';
-  font-weight: 900;
   font-size: 5rem;
   line-height: .75;
   color: ${theme.palette.primary.main};
-  letter-spacing: -.125rem;
 `;
 
 const StyledH2 = styled(Typography)`
-  font-family: 'Raleway';
   font-weight: 400;
   font-size: clamp(1.3rem, 2.5vw + .5rem, 2rem);
   margin: 0.5rem 0 1rem;
@@ -47,11 +43,10 @@ const StyledH2 = styled(Typography)`
 `;
 
 const StyledH3 = styled(Typography)`
-margin: 2rem 0 1rem 0;
-font-family: 'Raleway';
-font-weight: 700;
-font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
-color: ${theme.palette.primary.main};
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
+  color: ${theme.palette.primary.main};
 `;
 
 const StyledSkills = styled(Box)`
@@ -229,7 +224,7 @@ export default function AboutPage() {
             variants={childVariants}
             variant="body1"
           >
-            My work focuses on the intersection between design and development. I have a passion for creating clean and beautiful user experiences built on a solid understanding of the latest technologies.
+            My work focuses on the intersection between design and development. I have a passion for crafting engaging user experiences built on a solid understanding of the latest web technologies.
           </Typography>
           <StyledH3
             // @ts-expect-error

@@ -22,26 +22,10 @@ export function Head() {
   )
 }
 
-const StyledBackground = styled('div')`
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  transform: skewY(-13deg);
-  transform-origin: 0 0;
-  background: #fff;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  z-index: -1;
-`;
-
 const StyledH1 = styled(Typography)`
-  font-family: 'Raleway';
-  font-weight: 900;
   font-size: clamp(2.75rem, 8vw + 1rem, 4rem);
   line-height: .75;
   color: ${theme.palette.primary.main};
-  letter-spacing: -.125rem;
 
   ${props => props.theme.breakpoints.up("md")} {
     font-size: clamp(2.75rem, 4vw + 1rem, 5rem);
@@ -49,7 +33,6 @@ const StyledH1 = styled(Typography)`
 `;
 
 const StyledH2 = styled(Typography)`
-  font-family: 'Raleway';
   font-weight: 400;
   font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
   margin: 0.5rem 0 1rem;
@@ -104,7 +87,7 @@ export default function HomePage() {
             variants={childVariants}
             variant="body1"
           >
-            Experienced frontend developer and accessibility specialist with a passion for creating intuitive and accessible user experiences using the latest web technologies.
+            I'm an experienced frontend developer and accessibility specialist with a passion for creating intuitive and accessible user experiences using the latest web technologies. I'm always interested in hearing about new projects. Get in touch if you'd like to collaborate on something new.
           </Typography>
         </motion.div>
       </Grid>

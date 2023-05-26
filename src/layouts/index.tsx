@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from "../utils/theme";
-import { Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { HeadProps } from "gatsby";
 
 export function Head(props: HeadProps) {
@@ -47,6 +47,21 @@ const StyledGrid = styled(Grid)`
   }
 `;
 
+const StyledFooter = styled(Box)`
+  width: 100%;
+  background: ${theme.palette.primary.main};
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledName = styled(Typography)`
+  color: ${theme.palette.primary.contrastText};
+  font-size: .75rem;
+  font-weight: 700;
+`;
+
 export default function Layout({ children }: LayoutProps) {
   return (
     <ThemeProvider theme={theme}>
@@ -63,6 +78,11 @@ export default function Layout({ children }: LayoutProps) {
           {children}
         </StyledGrid>
       </main>
+      <StyledFooter>
+        <StyledName variant="body1">
+          Ⓒ 2023 - RYAN DeBERARDINIS
+        </StyledName>
+      </StyledFooter>
     </ThemeProvider>
   )
 }

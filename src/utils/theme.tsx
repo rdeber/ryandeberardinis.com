@@ -3,11 +3,16 @@ import { createTheme } from "@mui/material/styles";
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#31385e'
+      main: '#31385e',
+      contrastText: 'rgba(255,255,255,.85)'
     },
     secondary: {
       main: '#293fb9'
     },
+    text: {
+      primary: '#3b4351',
+      // secondary: '#293fb9'
+    }
   },
   shape: {
     borderRadius: 20,
@@ -25,6 +30,67 @@ export const theme = createTheme({
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
     ].join(','),
+    h1: {
+      fontFamily: [
+        'Raleway',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      fontWeight: 900,
+      letterSpacing: '-.125rem',
+    },
+    h2: {
+      fontFamily: [
+        'Raleway',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    },
+    h3: {
+      fontFamily: [
+        'Raleway',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    },
+    body1: {
+      fontSize: '1.15rem'
+    },
+    button: {
+      fontFamily: [
+        'Raleway',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+    }
   },
 });
 

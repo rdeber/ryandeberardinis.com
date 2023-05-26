@@ -31,13 +31,13 @@ const StyledFormContainer = styled(Paper)`
     margin: 0;
   }
 
-  form > fieldset > legend {
+  legend.form-title {
     font-family: 'Raleway';
-    font-size: 1rem;
-    color: #656d97;
+    font-size: 1.1rem;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 800;
     color: ${theme.palette.primary.main};
+    margin: 0 0 0.5rem;
   }
 
   label {
@@ -61,6 +61,10 @@ const StyledFormContainer = styled(Paper)`
     &:focus-visible {
       box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
                   0 3px 7px -3px rgba(0,0,0,0.3);
+
+      .MuiOutlinedInput-notchedOutline {
+        border-color: ${theme.palette.primary.main};
+      }
     }
   }
 
@@ -76,6 +80,7 @@ const StyledFormMessage = styled(TextField)`
 const StyledButton = styled(Button)`
   font-family: 'Raleway';
   font-weight: 800;
+  min-height: 3rem;
 `;
 
 // Encode form data as URL-encoded format
@@ -137,7 +142,9 @@ export default function ContactForm() {
             initial="hidden"
             animate={'visible'}
           >
-            <legend>Contact Me</legend>
+            <motion.legend className='form-title' variants={childVariants}>
+              Contact Me
+            </motion.legend>
             <motion.div variants={childVariants}>
               <TextField
                 margin="normal"

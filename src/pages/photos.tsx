@@ -24,16 +24,12 @@ export function Head() {
 }
 
 const StyledH1 = styled(Typography)`
-  font-family: 'Raleway';
-  font-weight: 900;
   font-size: 5rem;
   line-height: .75;
   color: ${theme.palette.primary.main};
-  letter-spacing: -.125rem;
 `;
 
 const StyledH2 = styled(Typography)`
-  font-family: 'Raleway';
   font-weight: 300;
   font-size: 2rem;
   margin-top: .5rem;
