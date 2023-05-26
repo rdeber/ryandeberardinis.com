@@ -19,7 +19,6 @@ export function Head() {
   )
 }
 
-
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;

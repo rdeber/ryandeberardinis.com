@@ -16,7 +16,9 @@ import HeadData from '../components/HeadData';
 
 export function Head() {
   return (
-    <HeadData title='Ryan DeBerardinis - Home Page' />
+    <HeadData
+      title='Ryan DeBerardinis - Home Page'
+      description="I'm an experienced frontend developer and accessibility engineer with a passion for creating intuitive and accessible user experiences using the latest web technologies." />
   )
 }
 
