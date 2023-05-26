@@ -13,6 +13,13 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { childVariants, parentVariants } from '../utils/motion';
 import HeadData from '../components/HeadData';
 
+export function Head() {
+  return (
+    <HeadData title='Ryan DeBerardinis - 404 Page' />
+  )
+}
+
+
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;

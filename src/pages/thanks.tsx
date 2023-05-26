@@ -13,6 +13,12 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { childVariants, parentVariants } from '../utils/motion';
 import HeadData from '../components/HeadData';
 
+export function Head() {
+  return (
+    <HeadData title='Ryan DeBerardinis - Thank You Page' />
+  )
+}
+
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;
@@ -43,7 +49,6 @@ export default function HomePage() {
 
   return (
     <>
-      <HeadData title="Ryan DeBerardinis - Thank You Page" />
       <Grid item xs={12} md={6} sx={{ p: { xs: 2, sm: 6 } }}>
         <motion.div
           variants={parentVariants}

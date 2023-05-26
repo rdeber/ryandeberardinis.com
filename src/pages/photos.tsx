@@ -17,6 +17,12 @@ import { HeadProps, graphql, useStaticQuery } from 'gatsby';
 import Photo from '../components/Photo';
 import HeadData from '../components/HeadData';
 
+export function Head() {
+  return (
+    <HeadData title='Ryan DeBerardinis - Photography' />
+  )
+}
+
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;
@@ -109,7 +115,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <HeadData title="Ryan DeBerardinis - Photos Page" />
       <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
         <motion.div
           variants={parentVariants}

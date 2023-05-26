@@ -19,6 +19,12 @@ import {
 import { useMediaQuery } from '@mui/material';
 import HeadData from '../components/HeadData';
 
+export function Head() {
+  return (
+    <HeadData title='Ryan DeBerardinis - About Page' />
+  )
+}
+
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
   font-weight: 900;
@@ -185,7 +191,6 @@ export default function AboutPage() {
 
   return (
     <>
-      <HeadData title="Ryan DeBerardinis - About Page" />
       <Grid
         item
         xs={12}
