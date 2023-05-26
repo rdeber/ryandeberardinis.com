@@ -81,6 +81,12 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/images/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        icon: `${__dirname}/src/images/icon.png`,
+      },
+    },
   ],
 };
 
