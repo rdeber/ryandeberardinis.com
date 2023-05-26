@@ -3,20 +3,16 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link as GatsbyLink } from "gatsby"
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import Avatar from '@mui/material/Avatar';
 import MailIcon from '@mui/icons-material/Mail';
-import { CodeRounded, GitHub } from '@mui/icons-material';
+import { GitHub } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from '@reach/router';
-import { theme } from '../utils/theme';
 
 const StyledLink = styled(GatsbyLink)`
   font-family: 'Raleway';
@@ -50,22 +46,22 @@ const StyledLink = styled(GatsbyLink)`
 `;
 
 const StyledBox = styled(motion.div)`
-ul,
-li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  ul,
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
 
-ul {
-  display: flex;
-  width: 100%;
-}
+  ul {
+    display: flex;
+    width: 100%;
+  }
 
-li {
-  display: flex;
-  position: relative;
-}
+  li {
+    display: flex;
+    position: relative;
+  }
 `
 
 const Underline = styled(motion.div)`
