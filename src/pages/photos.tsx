@@ -12,9 +12,10 @@ import Masonry from '@mui/lab/Masonry';
 import {
   childVariants, parentVariants, photoParent, photoChild,
 } from '../utils/motion';
-import { GatsbyImage, ImageDataLike } from 'gatsby-plugin-image';
-import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
+import { HeadProps, graphql, useStaticQuery } from 'gatsby';
 import Photo from '../components/Photo';
+import HeadData from '../components/HeadData';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -51,8 +52,6 @@ const StyledBox = styled(motion.div)`
 `;
 
 export default function AboutPage() {
-  // Get all the images from the photos directory
-  // and generated the sizes and data.
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: {sourceInstanceName: {eq: "photos"}}, sort: {name: ASC}) {
@@ -70,7 +69,7 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              featured: gatsbyImageData(layout: FIXED, width: 100, quality: 95)
+              logo: gatsbyImageData(layout: FIXED, width: 100, quality: 95)
             }
             name
           }
@@ -79,7 +78,7 @@ export default function AboutPage() {
     }
   `);
 
-  // Build the photos data object
+  // Build the photos data
   const images = data.allFile.edges.map((
     edge: {
       node: {
@@ -106,8 +105,11 @@ export default function AboutPage() {
   console.log('data', data);
   console.log(images[0].srcSet);
 
+  // const image = getImage(data.blogPost.avatar)
+
   return (
     <>
+      <HeadData title="Ryan DeBerardinis - Photos Page" />
       <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
         <motion.div
           variants={parentVariants}
@@ -130,12 +132,17 @@ export default function AboutPage() {
           >
             Featured on:
           </StyledH2>
-          {/* {data.featured.allFile.edges.map((image: any, index: number) => (
+          {/* <GatsbyImage
+            image={data.featured.edges[3]}
+            alt=""
+          />
+          {console.log('xxxx', data.featured.edges[3].node)}
+          {data.featured.edges.map((edge: any, index: number) => (
             <motion.div>
               <GatsbyImage
                 key={index}
-                image={image.image}
-                alt={image.alt}
+                image={edge}
+                alt={edge.node.name}
               />
             </motion.div>
           ))} */}

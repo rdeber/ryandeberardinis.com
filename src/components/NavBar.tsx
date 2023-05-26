@@ -142,14 +142,19 @@ export default function NavBar() {
           </StyledBox>
           <Box sx={{ marginLeft: {sm: 'auto'} }}>
             <Tooltip title="Contact Me">
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+              <IconButton size="large" aria-label="Open contact form" color="inherit">
                 <MailIcon />
               </IconButton>
             </Tooltip>
             <Tooltip title="View Source">
-                <IconButton component={Link} href="https://github.com/rdeber/ryandeberardinis.com" size="large" aria-label="View this site's source code on Github" color="inherit">
-                  <GitHub />
-                </IconButton>
+              <IconButton component={Link} href="https://github.com/rdeber/ryandeberardinis.com" size="large" aria-label="View this site's source code on Github" color="inherit">
+                <GitHub />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="My LinkedIn">
+              <IconButton component={Link} href="https://github.com/rdeber/ryandeberardinis.com" size="large" aria-label="View my Linkedin profile" color="inherit">
+                <GitHub />
+              </IconButton>
             </Tooltip>
           </Box>
         </Toolbar>

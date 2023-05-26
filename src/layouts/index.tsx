@@ -5,7 +5,13 @@ import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from "../utils/theme";
 import { Grid } from "@mui/material";
+import { HeadProps } from "gatsby";
 
+export function Head(props: HeadProps) {
+  return (
+    <html lang="en-us" />
+  )
+}
 interface LayoutProps {
   children: ReactNode;
 }

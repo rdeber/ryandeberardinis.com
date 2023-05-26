@@ -12,6 +12,7 @@ import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ContactForm from '../components/ContactForm';
 import { childVariants, parentVariants } from '../utils/motion';
+import HeadData from '../components/HeadData';
 
 const StyledBackground = styled('div')`
   position: fixed;
@@ -56,6 +57,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HeadData title="Ryan DeBerardinis - Home Page" />
       <Grid
         item
         xs={12}

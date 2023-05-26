@@ -17,6 +17,7 @@ import {
   skillsChildVariants, skillsVariants
 } from '../utils/motion';
 import { useMediaQuery } from '@mui/material';
+import HeadData from '../components/HeadData';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -184,6 +185,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <HeadData title="Ryan DeBerardinis - About Page" />
       <Grid
         item
         xs={12}
@@ -355,4 +357,4 @@ export default function AboutPage() {
       </Grid>
     </>
   );
-}
+};

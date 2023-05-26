@@ -11,6 +11,7 @@ import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { childVariants, parentVariants } from '../utils/motion';
+import HeadData from '../components/HeadData';
 
 const StyledH1 = styled(Typography)`
   font-family: 'Raleway';
@@ -42,6 +43,7 @@ export default function HomePage() {
 
   return (
     <>
+      <HeadData title="Ryan DeBerardinis - Thank You Page" />
       <Grid item xs={12} md={6} sx={{ p: { xs: 2, sm: 6 } }}>
         <motion.div
           variants={parentVariants}
