@@ -9,7 +9,7 @@ import { Link as GatsbyLink } from "gatsby"
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import MailIcon from '@mui/icons-material/Mail';
-import { GitHub } from '@mui/icons-material';
+import { GitHub, LinkedIn } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from '@reach/router';
@@ -147,13 +147,25 @@ export default function NavBar() {
               </IconButton>
             </Tooltip>
             <Tooltip title="View Source">
-              <IconButton component={Link} href="https://github.com/rdeber/ryandeberardinis.com" size="large" aria-label="View this site's source code on Github" color="inherit">
+              <IconButton
+                component={Link}
+                href="https://github.com/rdeber/ryandeberardinis.com"
+                size="large"
+                color='inherit'
+                aria-label="View this site's source code on Github"
+              >
                 <GitHub />
               </IconButton>
             </Tooltip>
             <Tooltip title="My LinkedIn">
-              <IconButton component={Link} href="https://github.com/rdeber/ryandeberardinis.com" size="large" aria-label="View my Linkedin profile" color="inherit">
-                <GitHub />
+              <IconButton
+                component={Link}
+                href="https://www.linkedin.com/in/ryandeberardinis"
+                size="large"
+                color='inherit'
+                aria-label="View my Linkedin profile"
+              >
+                <LinkedIn />
               </IconButton>
             </Tooltip>
           </Box>

@@ -23,6 +23,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/lab": "^5.0.0-alpha.130",
     "@mui/material": "^5.13.1",
+    "exif-parser": "^0.1.12",
     "framer-motion": "^10.12.12",
     "gatsby": "^5.9.1",
     "gatsby-omni-font-loader": "^2.0.2",
@@ -43,6 +44,7 @@
     "@types/node": "^18.16.5",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",
+    "gatsby-plugin-sharp-exif": "^2.0.0",
     "typescript": "^5.0.4"
   }
 }
