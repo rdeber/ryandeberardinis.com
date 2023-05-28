@@ -17,15 +17,15 @@ interface LayoutProps {
 }
 
 const NavBarContainer = styled(motion.div)`
-  position: fixed;
-  bottom: 0;
-  z-index: 2;
-  width: 100%;
+  // position: fixed;
+  // bottom: 0;
+  // z-index: 2;
+  // width: 100%;
 
-  ${props => props.theme.breakpoints.up("sm")} {
-    bottom: auto;
-    top: 0;
-  }
+  // ${props => props.theme.breakpoints.up("sm")} {
+  //   bottom: auto;
+  //   top: 0;
+  // }
 `;
 
 const StyledGrid = styled(Grid)`
@@ -38,9 +38,9 @@ const StyledGrid = styled(Grid)`
   overflow: hidden;
   flex-direction: column;
 
-  ${props => props.theme.breakpoints.up("sm")} {
-    padding: 64px 0 0;
-  }
+  // ${props => props.theme.breakpoints.up("sm")} {
+  //   padding: 64px 0 0;
+  // }
 
   ${props => props.theme.breakpoints.up("md")} {
     flex-direction: row;
