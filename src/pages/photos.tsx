@@ -36,10 +36,28 @@ const StyledH2 = styled(Typography)`
 `;
 
 const StyledH3 = styled(Typography)`
+  text-transform: uppercase;
   margin: 2rem 0 1rem 0;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
   color: ${theme.palette.primary.main};
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: 55px;
+    height: 1px;
+    margin: 0 0.75rem;
+    background: #9ea3bb;
+
+    ${props => props.theme.breakpoints.up("sm")} {
+      max-width: 100px;
+    }
+  }
 `;
 
 const FeaturedLogo = styled(motion.div)`
@@ -63,22 +81,22 @@ const StyledBox = styled(motion.div)`
 export default function AboutPage() {
   const data = useStaticQuery(graphql`
     query {
+      featured: allFile(filter: {sourceInstanceName: {eq: "featured"}}, sort: {name: DESC}) {
+        edges {
+          node {
+            childImageSharp {
+              logo: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 95, placeholder: NONE)
+            }
+            name
+          }
+        }
+      }
       allFile(filter: {sourceInstanceName: {eq: "photos"}}, sort: {name: ASC}) {
         edges {
           node {
             childImageSharp {
               thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 800, quality: 95)
               photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 80)
-            }
-            name
-          }
-        }
-      }
-      featured: allFile(filter: {sourceInstanceName: {eq: "featured"}}, sort: {name: DESC}) {
-        edges {
-          node {
-            childImageSharp {
-              logo: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 95, placeholder: NONE)
             }
             name
           }
@@ -112,10 +130,6 @@ export default function AboutPage() {
     };
   });
   // console.log('data', data);
-
-  // const featuredImage = getImage(data.featured.edges.node)
-  console.log('featuredImage', data.featured.edges[0].node.childImageSharp)
-  // const featuredImage = data.featured.edges.node.childImageSharp.logo;
 
   return (
     <>

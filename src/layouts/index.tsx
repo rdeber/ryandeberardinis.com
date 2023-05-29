@@ -36,6 +36,7 @@ const NavBarContainer = styled(motion.div)`
 
 const StyledGrid = styled(Grid)`
   background-color: #e3e7ec;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%, #eaeef4 0%, #e3e7ec 90% );
   max-width: 1440px;
   height: 100%;
   margin: 0 auto;

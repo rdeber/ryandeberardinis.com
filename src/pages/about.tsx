@@ -40,8 +40,9 @@ const StyledH2 = styled(Typography)`
 
 const StyledH3 = styled(Typography)`
   margin: 2rem 0 1rem 0;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
+  // font-weight: 700;
+  // font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
+  text-transform: uppercase;
   color: ${theme.palette.primary.main};
 `;
 
@@ -252,7 +253,7 @@ export default function AboutPage() {
             // @ts-expect-error
             component={motion.h3}
             variants={childVariants}
-            variant="body1"
+            variant="h3"
           >
             My skills:
           </StyledH3>

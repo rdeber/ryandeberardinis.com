@@ -32,11 +32,11 @@ const StyledFormContainer = styled(Paper)`
   }
 
   legend.form-title {
-    font-family: ${theme.typography.h1.fontFamily};
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    font-weight: 800;
+    font-family: ${theme.typography.h3.fontFamily};
+    font-size: ${theme.typography.h3.fontSize};
+    font-weight: ${theme.typography.h3.fontWeight};
     color: ${theme.palette.primary.main};
+    text-transform: uppercase;
     margin: 0 0 0.5rem;
   }
 
