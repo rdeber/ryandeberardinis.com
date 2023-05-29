@@ -3,11 +3,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { motion } from "framer-motion"
-import "@fontsource/raleway/300.css";
-import "@fontsource/raleway/400.css";
-import "@fontsource/raleway/800.css";
-import "@fontsource/raleway/900.css";
-import "@fontsource/architects-daughter";
 import { theme } from '../utils/theme';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import ContactForm from '../components/ContactForm';
@@ -33,7 +28,6 @@ const StyledH1 = styled(Typography)`
 `;
 
 const StyledH2 = styled(Typography)`
-  font-weight: 400;
   font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
   margin: 0.5rem 0 1rem;
   color: ${theme.palette.secondary.main};

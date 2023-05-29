@@ -32,7 +32,7 @@ const StyledFormContainer = styled(Paper)`
   }
 
   legend.form-title {
-    font-family: 'Raleway';
+    font-family: ${theme.typography.h1.fontFamily};
     font-size: 1.1rem;
     text-transform: uppercase;
     font-weight: 800;
@@ -41,10 +41,14 @@ const StyledFormContainer = styled(Paper)`
   }
 
   label {
-    font-family: 'Raleway';
-    font-weight: 400;
+    font-family: ${theme.typography.h1.fontFamily};
+    font-weight: 500;
     font-size: .95rem;
     color: ${theme.palette.primary.main};
+  }
+
+  .MuiFormLabel-root.Mui-focused {
+    transform: translate(14px, -9px) scale(.95);
   }
 
   .MuiFormControl-root {
@@ -53,19 +57,31 @@ const StyledFormContainer = styled(Paper)`
 
   .MuiInputBase-root {
     background-color: #fff;
-    // box-shadow: 0 2px 5px -1px rgba(50,50,93,0.25),
-                  //  0 1px 3px -1px rgba(0,0,0,0.3);
-    transition: all .15s ease;
+    transition: all .2s ease;
+
+    .MuiOutlinedInput-notchedOutline {
+      transition: all .2s ease;
+    }
 
     &:hover,
-    &:focus-visible {
+    &:focus-within {
       box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
                   0 3px 7px -3px rgba(0,0,0,0.3);
 
       .MuiOutlinedInput-notchedOutline {
-        border-color: ${theme.palette.primary.main};
+        border-color: ${theme.palette.secondary.light};
       }
     }
+
+    &:focus-visible {
+      .MuiOutlinedInput-notchedOutline {
+        border-width: 3px;
+      }
+    }
+  }
+
+  .MuiInputBase-input {
+    height: 1.3rem;
   }
 
   textarea {
@@ -78,9 +94,13 @@ const StyledFormMessage = styled(TextField)`
 `;
 
 const StyledButton = styled(Button)`
-  font-family: 'Raleway';
-  font-weight: 800;
   min-height: 3rem;
+  transition: all 200ms ease;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 5px ${theme.palette.secondary.light};
+    outline: none;
+  }
 `;
 
 // Encode form data as URL-encoded format
@@ -197,12 +217,14 @@ export default function ContactForm() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               variants={childVariants}
+              tabIndex={-1}
             >
               <StyledButton
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                disableRipple
               >
                 Send Message
                 <Send sx={{ ml: 1 }} />

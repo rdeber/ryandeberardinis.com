@@ -3,10 +3,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import { motion } from "framer-motion"
-import "@fontsource/raleway/300.css";
-import "@fontsource/raleway/400.css";
-import "@fontsource/raleway/800.css";
-import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
 import Masonry from '@mui/lab/Masonry';
 import {
@@ -30,10 +26,13 @@ const StyledH1 = styled(Typography)`
 `;
 
 const StyledH2 = styled(Typography)`
-  font-weight: 300;
-  font-size: 2rem;
-  margin-top: .5rem;
-  color: ${theme.palette.primary.main};
+  font-size: clamp(1.1rem, 3vw + .5rem, 2rem);
+  margin: 0.5rem 0 1rem;
+  color: ${theme.palette.secondary.main};
+
+  ${props => props.theme.breakpoints.up("md")} {
+    font-size: clamp(1.1rem, 1.35vw + .5rem, 5rem);
+  }
 `;
 
 const StyledBox = styled(motion.div)`
@@ -168,8 +167,8 @@ export default function AboutPage() {
                 // whileTap={{ scale: 0.97 }}
                 whileHover={{ scale: 1.025 }}
                 whileFocus={{ scale: 1.025 }}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
               >
                 <StyledBox variants={photoChild}>

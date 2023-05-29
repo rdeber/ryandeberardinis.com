@@ -7,7 +7,8 @@ export const theme = createTheme({
       contrastText: 'rgba(255,255,255,.85)'
     },
     secondary: {
-      main: '#293fb9'
+      main: '#293fb9',
+      light: '#788AE2',
     },
     text: {
       primary: '#3b4351',
@@ -59,6 +60,7 @@ export const theme = createTheme({
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
       ].join(','),
+      fontWeight: 400,
     },
     h3: {
       fontFamily: [
@@ -90,6 +92,7 @@ export const theme = createTheme({
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
       ].join(','),
+      fontWeight: 800,
     }
   },
 });

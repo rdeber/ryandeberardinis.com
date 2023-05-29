@@ -20,8 +20,6 @@ export function Head() {
 }
 
 const StyledH1 = styled(Typography)`
-  font-family: 'Raleway';
-  font-weight: 900;
   font-size: clamp(2.75rem, 8vw + 1rem, 5rem);
   line-height: .75;
   color: ${theme.palette.primary.main};
@@ -33,8 +31,6 @@ const StyledH1 = styled(Typography)`
 `;
 
 const StyledH2 = styled(Typography)`
-  font-family: 'Raleway';
-  font-weight: 400;
   font-size: clamp(1.1rem, 3vw + .5rem, 5rem);
   margin: 0.5rem 0 1rem;
   color: ${theme.palette.secondary.main};

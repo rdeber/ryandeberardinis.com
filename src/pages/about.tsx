@@ -4,11 +4,6 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion"
-import "@fontsource/raleway/300.css";
-import "@fontsource/raleway/400.css";
-import "@fontsource/raleway/700.css";
-import "@fontsource/raleway/800.css";
-import "@fontsource/raleway/900.css";
 import { theme } from '../utils/theme';
 import { StaticImage } from "gatsby-plugin-image"
 import Chip from '@mui/material/Chip';

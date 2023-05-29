@@ -6,6 +6,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from "../utils/theme";
 import { Box, Grid, Typography } from "@mui/material";
 import { HeadProps } from "gatsby";
+import "@fontsource/raleway/300.css";
+import "@fontsource/raleway/400.css";
+import "@fontsource/raleway/500.css";
+import "@fontsource/raleway/800.css";
+import "@fontsource/raleway/900.css";
+import "@fontsource/architects-daughter";
 
 export function Head(props: HeadProps) {
   return (

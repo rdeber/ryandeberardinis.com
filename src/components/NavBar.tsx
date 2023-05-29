@@ -13,9 +13,10 @@ import { GitHub, LinkedIn } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from '@reach/router';
+import { theme } from '../utils/theme';
 
 const StyledLink = styled(GatsbyLink)`
-  font-family: 'Raleway';
+  font-family: ${theme.typography.h1.fontFamily};
   font-weight: 800;
   font-size: 1rem;
   color: #fff;
@@ -70,7 +71,7 @@ const Underline = styled(motion.div)`
   left: 0;
   right: 0;
   height: 9px;
-  background: #8998e8;
+  background: ${theme.palette.secondary.light};
   border-radius: 20px 20px 4px 4px;
 `
 
@@ -105,7 +106,7 @@ export default function NavBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky">
+      <AppBar position="static">
         <Toolbar>
           <IconButton
             size="large"
@@ -130,7 +131,7 @@ export default function NavBar() {
                     </StyledLink>
                     {item === selectedTab ? (
                       <Underline
-                        transition={{ type: "spring", stiffness: 75 }}
+                        transition={{ type: "spring", stiffness: 100, damping: 10 }}
                         className="underline"
                         layoutId="underline"
                       />
