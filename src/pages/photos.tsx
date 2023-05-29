@@ -85,7 +85,7 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              logo: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 95, placeholder: NONE)
+              logo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 200, quality: 85, placeholder: NONE)
             }
             name
           }
@@ -95,8 +95,8 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(layout: CONSTRAINED, width: 800, quality: 95)
-              photo: gatsbyImageData(layout: CONSTRAINED, width: 2000, quality: 80)
+              thumbnail: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 800, quality: 85)
+              photo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 2000, quality: 85)
             }
             name
           }

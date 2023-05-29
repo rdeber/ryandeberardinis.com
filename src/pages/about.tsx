@@ -162,7 +162,7 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              logo: gatsbyImageData(layout: CONSTRAINED, width: 700, quality: 95, placeholder: DOMINANT_COLOR)
+              logo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 700, quality: 85, placeholder: DOMINANT_COLOR)
             }
             name
           }
