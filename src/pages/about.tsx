@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
 import { motion } from "framer-motion"
 import { theme } from '../utils/theme';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Chip from '@mui/material/Chip';
 import {
   childVariants, parentVariants,
@@ -13,6 +13,7 @@ import {
 } from '../utils/motion';
 import { useMediaQuery } from '@mui/material';
 import HeadData from '../components/HeadData';
+import { useStaticQuery, graphql } from 'gatsby';
 
 export function Head() {
   return (
@@ -137,6 +138,15 @@ const StyledBox = styled(motion.div)`
                 0 50px 100px -20px rgba(50,50,93,0.25),
                 0 30px 60px -30px rgba(0,0,0,0.3);
   }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #fff,
+                0 0 0 5px ${theme.palette.secondary.light},
+                inset 1px -2px 3px rgba(50,50,93,0.25),
+                0 50px 100px -20px rgba(50,50,93,0.25),
+                0 30px 60px -30px rgba(0,0,0,0.3);
+    outline: none;
+  }
 `;
 
 const StyledBoxInner = styled(Box)`
@@ -145,6 +155,23 @@ const StyledBoxInner = styled(Box)`
 `;
 
 export default function AboutPage() {
+  const data = useStaticQuery(graphql`
+    query {
+      allFile(filter: {sourceInstanceName: {eq: "work"}}, sort: {name: ASC}) {
+        edges {
+          node {
+            childImageSharp {
+              logo: gatsbyImageData(layout: CONSTRAINED, width: 700, quality: 95, placeholder: DOMINANT_COLOR)
+            }
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(data)
+
   const theme = useTheme()
   const isMediumAndUp = useMediaQuery(theme.breakpoints.up('md'))
 
@@ -271,83 +298,23 @@ export default function AboutPage() {
           initial="hidden"
           animate={'visible'}
         >
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-1.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-2.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-3.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-4.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-5.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-6.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
-          <StyledBox variants={workChild}>
-            <StyledBoxInner>
-              <StaticImage
-                src="../images/work/project-7.jpg"
-                alt=""
-                placeholder="dominantColor"
-                layout="constrained"
-                objectFit='cover'
-              />
-            </StyledBoxInner>
-          </StyledBox>
+          {data.allFile.edges.map((edge: any, index: number) => (
+            <StyledBox
+              variants={workChild}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 1.15 }}
+              whileFocus={{ scale: 1.15 }}
+              transition={{ type: "spring", stiffness: 100 }}
+              key={'work' + index}
+            >
+              <StyledBoxInner>
+                <GatsbyImage
+                    image={edge.node.childImageSharp.logo}
+                    alt=""
+                  />
+              </StyledBoxInner>
+            </StyledBox>
+          ))}
         </StyledBoxWrap>
       </Grid>
     </>

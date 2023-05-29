@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { theme } from '../utils/theme';
 import Masonry from '@mui/lab/Masonry';
 import {
-  childVariants, parentVariants, photoParent, photoChild,
+  childVariants, parentVariants, photoParent, photoChild, featuredChild, featuredParent, skillsVariants, skillsChildVariants,
 } from '../utils/motion';
 import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
 import { HeadProps, graphql, useStaticQuery } from 'gatsby';
@@ -35,6 +35,17 @@ const StyledH2 = styled(Typography)`
   }
 `;
 
+const StyledH3 = styled(Typography)`
+  margin: 2rem 0 1rem 0;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
+  color: ${theme.palette.primary.main};
+`;
+
+const FeaturedLogo = styled(motion.div)`
+  filter: grayscale(100%);
+`;
+
 const StyledBox = styled(motion.div)`
   background: #fff;
   box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
@@ -43,9 +54,6 @@ const StyledBox = styled(motion.div)`
   overflow: hidden;
 
   a {
-    // border-radius: 15px;
-    // overflow: hidden;
-
     // Fix bottom gap in photo component
     display: block;
     line-height: 0;
@@ -66,11 +74,11 @@ export default function AboutPage() {
           }
         }
       }
-      featured: allFile(filter: {sourceInstanceName: {eq: "featured"}}, sort: {name: ASC}) {
+      featured: allFile(filter: {sourceInstanceName: {eq: "featured"}}, sort: {name: DESC}) {
         edges {
           node {
             childImageSharp {
-              logo: gatsbyImageData(layout: FIXED, width: 100, quality: 95)
+              logo: gatsbyImageData(layout: CONSTRAINED, width: 200, quality: 95, placeholder: NONE)
             }
             name
           }
@@ -103,10 +111,11 @@ export default function AboutPage() {
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
-  console.log('data', data);
-  console.log(images[0].srcSet);
+  // console.log('data', data);
 
-  // const image = getImage(data.blogPost.avatar)
+  // const featuredImage = getImage(data.featured.edges.node)
+  console.log('featuredImage', data.featured.edges[0].node.childImageSharp)
+  // const featuredImage = data.featured.edges.node.childImageSharp.logo;
 
   return (
     <>
@@ -130,22 +139,46 @@ export default function AboutPage() {
             variants={childVariants}
             variant="h2"
           >
-            Featured on:
+            Nature + Cities + People
           </StyledH2>
-          {/* <GatsbyImage
-            image={data.featured.edges[3]}
-            alt=""
-          />
-          {console.log('xxxx', data.featured.edges[3].node)}
-          {data.featured.edges.map((edge: any, index: number) => (
-            <motion.div>
-              <GatsbyImage
-                key={index}
-                image={edge}
-                alt={edge.node.name}
-              />
-            </motion.div>
-          ))} */}
+          <Typography
+            component={motion.p}
+            variants={childVariants}
+            variant="body1"
+          >
+            My photography captures the beauty and essence of diverse subjects, ranging from breathtaking natural landscapes to captivating urban city scenes. Through my lens, I aim to showcase the intricate details, hidden moments, and the undeniable energy that permeates people and places.
+          </Typography>
+          <StyledH3
+            // @ts-expect-error
+            component={motion.h3}
+            variants={childVariants}
+            variant="h3"
+          >
+            Featured on:
+          </StyledH3>
+        </motion.div>
+        <motion.div
+          variants={featuredParent}
+          initial="hidden"
+          animate={'visible'}
+        >
+          <Grid container spacing={1}>
+            {data.featured.edges.map((edge: any, index: number) => (
+              <Grid
+                item
+                xs={2}
+                key={'featured' + index}
+                sx={{ px: 3 , py: 2}}
+              >
+                <FeaturedLogo variants={featuredChild}>
+                  <GatsbyImage
+                    image={edge.node.childImageSharp.logo}
+                    alt=""
+                  />
+                </FeaturedLogo>
+              </Grid>
+            ))}
+          </Grid>
         </motion.div>
       </Grid>
 
@@ -170,6 +203,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
+                key={'photo-wrap' + index}
               >
                 <StyledBox variants={photoChild}>
                   <Photo

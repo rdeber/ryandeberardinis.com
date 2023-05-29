@@ -63,10 +63,15 @@ const StyledFormContainer = styled(Paper)`
       transition: all .2s ease;
     }
 
-    &:hover,
+    &:hover {
+      .MuiOutlinedInput-notchedOutline {
+        border-color: ${theme.palette.secondary.light};
+      }
+    }
+
     &:focus-within {
-      box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
-                  0 3px 7px -3px rgba(0,0,0,0.3);
+        box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
+                    0 3px 7px -3px rgba(0,0,0,0.3);
 
       .MuiOutlinedInput-notchedOutline {
         border-color: ${theme.palette.secondary.light};
@@ -94,12 +99,30 @@ const StyledFormMessage = styled(TextField)`
 `;
 
 const StyledButton = styled(Button)`
+  box-shadow: ${theme.shadows[5]};
   min-height: 3rem;
+  margin: 1rem 0 .5rem;
   transition: all 200ms ease;
 
+  &:hover {
+    box-shadow: ${theme.shadows[10]};
+  }
+
   &:focus-visible {
-    box-shadow: 0 0 0 2px #fff, 0 0 0 5px ${theme.palette.secondary.light};
+    box-shadow: 0 0 0 2px #fff,
+                0 0 0 5px ${theme.palette.secondary.light},
+                ${theme.shadows[10]};
     outline: none;
+  }
+
+  &:active {
+    box-shadow: ${theme.shadows[8]};
+  }
+
+  &:active:focus-visible {
+    box-shadow: 0 0 0 2px #fff,
+                0 0 0 5px ${theme.palette.secondary.light},
+                ${theme.shadows[8]};
   }
 `;
 
@@ -201,7 +224,6 @@ export default function ContactForm() {
                 onChange={handleChange}
               />
             </motion.div>
-
             <motion.div variants={childVariants}>
               <StyledFormMessage
                 margin="normal"
@@ -214,8 +236,8 @@ export default function ContactForm() {
               />
             </motion.div>
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.99 }}
               variants={childVariants}
               tabIndex={-1}
             >
@@ -223,7 +245,6 @@ export default function ContactForm() {
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
                 disableRipple
               >
                 Send Message

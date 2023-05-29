@@ -8,6 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ContactForm from '../components/ContactForm';
 import { childVariants, parentVariants } from '../utils/motion';
 import HeadData from '../components/HeadData';
+import { useEffect, useRef, useState } from 'react';
 
 export function Head() {
   return (
@@ -38,7 +39,28 @@ const StyledH2 = styled(Typography)`
 `;
 
 export default function HomePage() {
-  const matches = useMediaQuery(theme.breakpoints.down('md'));
+  const isMediumAndDown = useMediaQuery(theme.breakpoints.down('md'));
+  // const elementRef = useRef<HTMLDivElement | null>(null);
+  // const [hasFocused, setHasFocused] = useState<boolean | undefined>(false);
+  // const [focusedOrHasFocused, setFocusedOrHasFocused] = useState<boolean | undefined>(false);
+
+  // useEffect(() => {
+  //   const handleFocusChange = () => {
+  //     setHasFocused(elementRef.current?.matches(':focus-within:not(:focus)'));
+  //     setFocusedOrHasFocused(elementRef.current?.matches(':focus-within'));
+  //   };
+
+  //   document.addEventListener('focusin', handleFocusChange);
+  //   document.addEventListener('focusout', handleFocusChange);
+
+  //   return () => {
+  //     document.removeEventListener('focusin', handleFocusChange);
+  //     document.removeEventListener('focusout', handleFocusChange);
+  //   };
+  // }, []);
+
+  // console.log('hasFocused', hasFocused);
+  // console.log('focusedOrHasFocused', focusedOrHasFocused);
 
   return (
     <>
@@ -93,24 +115,36 @@ export default function HomePage() {
           padding: {
             xs: '0rem 1.5rem 3rem',
             sm: '0rem 2.5rem 3rem',
-            md: '3rem 3rem 4rem 1rem'
+            md: '2.5rem 3rem 4rem 1rem'
           }
         }}
       >
         <motion.div
+          // ref={elementRef}
           initial={{
             opacity: 0,
-            transform: matches
+            transform: isMediumAndDown
               ? 'perspective(25rem) rotateY(0) rotateX(0) rotate(0)'
               : 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
           }}
           animate={{
             opacity: 1,
-            transform: matches
+            transform: isMediumAndDown
               ? 'perspective(75rem) rotateX(8deg)'
               : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
           }}
           transition={{ type: "spring", stiffness: 100 }}
+          // animate={{
+          //   opacity: 1,
+          //   transform: isMediumAndDown
+          //     ? focusedOrHasFocused
+          //       ? 'perspective(75rem) rotateX(0)'
+          //       : 'perspective(75rem) rotateX(8deg)'
+          //     : focusedOrHasFocused
+          //       ? 'perspective(75rem) rotateY(0) rotateX(0) rotate(0)'
+          //       : 'perspective(75rem) rotateY(-20deg) rotateX(4deg) rotate(1deg)'
+          // }}
+
         >
           <ContactForm />
         </motion.div>
