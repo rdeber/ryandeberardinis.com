@@ -75,6 +75,11 @@ const StyledH3 = styled(Typography)`
 
 const FeaturedLogo = styled(motion.div)`
   filter: grayscale(100%);
+  transition: all 200ms ease;
+
+  &:hover {
+    filter: grayscale(0);
+  }
 `;
 
 const StyledBox = styled(motion.div)`
