@@ -27,7 +27,7 @@ const StyledGrid = styled(Grid)`
     padding: 3rem 3rem 3rem;
   }
   ${props => props.theme.breakpoints.up("md")} {
-    padding: 3rem 1rem 4rem 3rem;
+    padding: 3rem 1rem 4rem;
   }
 }
 `;
@@ -78,20 +78,23 @@ const FeaturedLogo = styled(motion.div)`
 `;
 
 const StyledBox = styled(motion.div)`
-  background: #fff;
-  box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
-              0 3px 7px -3px rgba(0,0,0,0.3);
-  border-radius: 15px;
-  overflow: hidden;
-
   a {
+    box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
+                0 3px 7px -3px rgba(0,0,0,0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 200ms ease;
+
     // Fix bottom gap in photo component
     display: block;
     line-height: 0;
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px #fff,
-                  0 0 0 5px ${theme.palette.secondary.light};
+      box-shadow: 0 0 0 3px #fff,
+                  0 0 0 8px ${theme.palette.secondary.light},
+                  0 6px 12px -2px rgba(50,50,93,0.25),
+                  0 3px 7px -3px rgba(0,0,0,0.3);
+      outline: none;
     }
   }
 `;
@@ -155,9 +158,6 @@ export default function AboutPage() {
       <StyledGrid
         item
         xs={12}
-        sx={{
-
-        }}
       >
         <motion.div
           variants={parentVariants}
@@ -264,21 +264,6 @@ export default function AboutPage() {
                 </StyledBox>
               </motion.div>
             ))}
-
-            {/* {images.map((image: any, index: number) => (
-                <motion.div variants={photoChild}>
-                  <SimpleGallery
-                    galleryID="my-test-gallery"
-                    images={image.image}
-                  />
-                  <GatsbyImage
-                    key={index}
-                    image={image.image}
-                    alt={image.alt}
-                    // style={{ width: '100%', height: 'auto' }}
-                  />
-                </motion.div>
-              ))} */}
           </Masonry>
         </motion.div>
       </Grid>

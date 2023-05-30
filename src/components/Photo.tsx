@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { GatsbyImage, ImageDataLike, StaticImage } from 'gatsby-plugin-image';
+import { useStaticQuery, graphql } from 'gatsby';
 
 interface PhotoProps {
   alt: string
@@ -28,7 +29,9 @@ const Photo = (
       initialZoomLevel: 'fit',
       secondaryZoomLevel: 'fit',
       pswpModule: () => import('photoswipe'),
-      // preload: [1, 3]
+      imageClickAction: 'close',
+      tapAction: 'close',
+      doubleTapAction: false,
     });
     lightbox.init();
 
@@ -40,7 +43,7 @@ const Photo = (
 
   return (
     <a
-      href={largeURL}
+      href='../images/photos/big-tree-colors-orange.jpg'
       data-pswp-srcset={srcSet}
       data-pswp-width={datapswpwidth}
       data-pswp-height={datapswpheight}
