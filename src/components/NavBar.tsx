@@ -67,12 +67,16 @@ const StyledBox = styled(motion.div)`
 
 const Underline = styled(motion.div)`
   position: absolute;
-  top: 100%;
+  top: 94%;
   left: 0;
   right: 0;
   height: 9px;
   background: ${theme.palette.secondary.light};
   border-radius: 20px 20px 4px 4px;
+
+  ${props => props.theme.breakpoints.up("sm")} {
+    top: 100%
+  }
 `
 
 type Link = {
@@ -108,7 +112,7 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -116,7 +120,7 @@ export default function NavBar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <StyledBox sx={{ flexGrow: 1 }}>
             <nav>
               <ul>
@@ -142,11 +146,11 @@ export default function NavBar() {
             </nav>
           </StyledBox>
           <Box sx={{ marginLeft: {sm: 'auto'} }}>
-            <Tooltip title="Contact Me">
+            {/* <Tooltip title="Contact Me">
               <IconButton size="large" aria-label="Open contact form" color="inherit">
                 <MailIcon />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
             <Tooltip title="View Source">
               <IconButton
                 component={Link}

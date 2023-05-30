@@ -182,13 +182,21 @@ export default function AboutPage() {
           initial="hidden"
           animate={'visible'}
         >
-          <Grid container spacing={1}>
+          <Grid container spacing={1}
+            sx={{
+              maxWidth: '800px',
+              margin: 'auto'}}
+          >
             {data.featured.edges.map((edge: any, index: number) => (
               <Grid
                 item
-                xs={2}
+                xs={3}
+                sm={2}
                 key={'featured' + index}
-                sx={{ px: 3 , py: 2}}
+                sx={{
+                  px: { xs: 1, sm: 2, md: 3 },
+                  py: { xs: 0, sm: 2 }
+                }}
               >
                 <FeaturedLogo variants={featuredChild}>
                   <GatsbyImage
