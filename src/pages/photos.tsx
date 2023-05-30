@@ -19,6 +19,19 @@ export function Head() {
   )
 }
 
+const StyledGrid = styled(Grid)`
+  text-align: center;
+  padding: 2rem 1.5rem;
+
+  ${props => props.theme.breakpoints.up("sm")} {
+    padding: 3rem 3rem 3rem;
+  }
+  ${props => props.theme.breakpoints.up("md")} {
+    padding: 3rem 1rem 4rem 3rem;
+  }
+}
+`;
+
 const StyledH1 = styled(Typography)`
   font-size: 5rem;
   line-height: .75;
@@ -139,15 +152,11 @@ export default function AboutPage() {
 
   return (
     <>
-      <Grid
+      <StyledGrid
         item
         xs={12}
         sx={{
-          padding: {
-            xs: '2rem 1.5rem',
-            sm: '3rem 3rem 3rem',
-            md: '6rem 1rem 4rem 3rem'
-          }
+
         }}
       >
         <motion.div
@@ -163,7 +172,7 @@ export default function AboutPage() {
           >
             <span>Photos</span>
           </StyledH1>
-          <StyledH2
+          {/* <StyledH2
             // @ts-expect-error
             component={motion.h2}
             variants={childVariants}
@@ -177,7 +186,7 @@ export default function AboutPage() {
             variant="body1"
           >
             My photography captures the beauty and essence of diverse subjects, ranging from breathtaking natural landscapes to captivating urban city scenes. Through my lens, I aim to showcase the intricate details, hidden moments, and the undeniable energy that permeates people and places.
-          </Typography>
+          </Typography> */}
           <StyledH3
             // @ts-expect-error
             component={motion.h3}
@@ -218,7 +227,7 @@ export default function AboutPage() {
             ))}
           </Grid>
         </motion.div>
-      </Grid>
+      </StyledGrid>
 
       <Grid item xs={12} sx={{ p: { xs: 1, sm: 2 } }}>
         <motion.div
@@ -235,9 +244,7 @@ export default function AboutPage() {
           >
             {images.map((image: any, index: number) => (
               <motion.div
-                // whileTap={{ scale: 0.97 }}
                 whileHover={{ scale: 1.025 }}
-                whileFocus={{ scale: 1.025 }}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
