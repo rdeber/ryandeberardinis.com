@@ -75,6 +75,11 @@ const StyledBox = styled(motion.div)`
     // Fix bottom gap in photo component
     display: block;
     line-height: 0;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px #fff,
+                  0 0 0 5px ${theme.palette.secondary.light};
+    }
   }
 `;
 
@@ -126,6 +131,7 @@ export default function AboutPage() {
       srcSet: edge.node.childImageSharp.photo.images.fallback.srcSet,
       width: edge.node.childImageSharp.photo.width,
       height: edge.node.childImageSharp.photo.height,
+      gatsbyImageData: edge.node.childImageSharp.photo,
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
@@ -227,6 +233,7 @@ export default function AboutPage() {
                     thumbnailURL={image.thumbnailURL}
                     datapswpwidth={image.width}
                     datapswpheight={image.height}
+                    gatsbyImage={image.gatsbyImageData}
                     key={'photo-' + index}
                   />
                 </StyledBox>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 interface PhotoProps {
   alt: string
@@ -9,13 +10,15 @@ interface PhotoProps {
   thumbnailURL: string
   datapswpwidth: number
   datapswpheight: number
+  gatsbyImage: any
 }
 
 const Photo = (
   props: PhotoProps
 ): React.ReactElement => {
   const {
-    alt, largeURL, srcSet, thumbnailURL, datapswpwidth, datapswpheight, ...rest
+    alt, largeURL, srcSet, thumbnailURL,
+    datapswpwidth, datapswpheight, gatsbyImage, ...rest
   } = props
 
   useEffect(() => {
@@ -25,6 +28,7 @@ const Photo = (
       initialZoomLevel: 'fit',
       secondaryZoomLevel: 'fit',
       pswpModule: () => import('photoswipe'),
+      // preload: [1, 3]
     });
     lightbox.init();
 
@@ -50,6 +54,12 @@ const Photo = (
           maxWidth: '100%'
         }}
       />
+      {/* <GatsbyImage
+        src={thumbnailURL}
+        image={gatsbyImage}
+        alt=""
+      /> */}
+
     </a>
   );
 }
