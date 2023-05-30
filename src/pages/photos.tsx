@@ -139,7 +139,17 @@ export default function AboutPage() {
 
   return (
     <>
-      <Grid item xs={12} sx={{ p: { xs: 2, sm: 6 } }}>
+      <Grid
+        item
+        xs={12}
+        sx={{
+          padding: {
+            xs: '2rem 1.5rem',
+            sm: '3rem 3rem 3rem',
+            md: '6rem 1rem 4rem 3rem'
+          }
+        }}
+      >
         <motion.div
           variants={parentVariants}
           initial="hidden"

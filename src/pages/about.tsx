@@ -44,6 +44,24 @@ const StyledH3 = styled(Typography)`
   // font-size: clamp(1.5rem, 1.75vw + .5rem, 2rem);
   text-transform: uppercase;
   color: ${theme.palette.primary.main};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    max-width: 75px;
+    height: 1px;
+    margin: 0 0.75rem;
+    background: #9ea3bb;
+
+    ${props => props.theme.breakpoints.up("sm")} {
+      max-width: 100px;
+    }
+  }
 `;
 
 const StyledSkills = styled(Box)`
