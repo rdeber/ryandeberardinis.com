@@ -14,6 +14,8 @@ import {
 import { useMediaQuery } from '@mui/material';
 import HeadData from '../components/HeadData';
 import { useStaticQuery, graphql } from 'gatsby';
+import { Javascript } from '@mui/icons-material';
+import UI from 'photoswipe/dist/types/ui/ui';
 
 export function Head() {
   return (
@@ -66,6 +68,10 @@ const StyledH3 = styled(Typography)`
 
 const StyledSkills = styled(Box)`
   max-width: 450px;
+
+  .MuiGrid-root {
+    justify-content: center;
+  }
 
   ul, li {
     margin: 0;
@@ -282,6 +288,18 @@ export default function AboutPage() {
     }
   };
 
+  const skills = [
+    "HTML5", 'CSS', 'Javascript', 'WCAG', 'WAI-ARIA', 'React',
+    'Typescript', 'SCSS', 'UX/UI', 'Material UI', 'Gatsby',
+    'jQuery', 'Bootstrap', 'Git', 'Photoshop', 'Illustrator'
+  ]
+
+  const tech = [
+    "HTML5", 'CSS', 'Javascript', 'WCAG', 'WAI-ARIA', 'React',
+    'Typescript', 'SCSS', 'UX/UI', 'Material UI', 'Gatsby',
+    'jQuery', 'Bootstrap', 'Git', 'Photoshop', 'Illustrator'
+  ]
+
   return (
     <>
       <Grid
@@ -330,7 +348,7 @@ export default function AboutPage() {
             variants={childVariants}
             variant="h3"
           >
-            My skills:
+            Skills
           </StyledH3>
         </motion.div>
         <StyledSkills>
@@ -342,17 +360,17 @@ export default function AboutPage() {
             initial="hidden"
             animate={'visible'}
           >
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="HTML5" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="CSS" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Javascript" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Accessibility" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WCAG" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="WAI-ARIA" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="UX/UI" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="React" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Typescript" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Gatsby" color='primary' /></Grid>
-            <Grid component={'li'} item><Chip size="small" component={motion.div} variants={skillsChildVariants} label="Material UI" color='primary' /></Grid>
+            {skills.map((label: string, index: number) => (
+              <Grid key={index} component={'li'} item>
+                <Chip
+                  size="small"
+                  component={motion.div}
+                  variants={skillsChildVariants}
+                  label={label}
+                  color='primary'
+                />
+              </Grid>
+            ))}
           </Grid>
         </StyledSkills>
       </Grid>
@@ -392,6 +410,48 @@ export default function AboutPage() {
           ))}
         </StyledBoxWrap>
       </Grid>
+      {/* <Grid
+        item
+        xs={12}
+        sx={{
+          padding: {
+            xs: '2rem 1.5rem',
+            sm: '3rem 3rem 3rem',
+            md: '6rem 1rem 4rem 3rem'
+          }
+        }}
+      >
+        <StyledH3
+          // @ts-expect-error
+          component={motion.h3}
+          variants={childVariants}
+          variant="h3"
+        >
+          Skills & Technologies
+        </StyledH3>
+        <StyledSkills>
+          <Grid
+            container
+            spacing={1}
+            component={motion.ul}
+            variants={skillsVariants}
+            initial="hidden"
+            animate={'visible'}
+          >
+            {skills.map((label: string, index: number) => (
+              <Grid key={index} component={'li'} item>
+                <Chip
+                  size="small"
+                  component={motion.div}
+                  variants={skillsChildVariants}
+                  label={label}
+                  color='primary'
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </StyledSkills>
+      </Grid> */}
     </>
   );
 };
