@@ -68,6 +68,7 @@ const StyledH3 = styled(Typography)`
 
 const StyledSkills = styled(Box)`
   max-width: 450px;
+  margin: auto;
 
   .MuiGrid-root {
     justify-content: center;

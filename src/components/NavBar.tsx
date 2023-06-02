@@ -87,7 +87,7 @@ type Link = {
 
 const links = [
   { label: "Home", location: "/" },
-  { label: "Work", location: "/about" },
+  { label: "About", location: "/about" },
   { label: "Photos", location: "/photos" }
 ];
 
