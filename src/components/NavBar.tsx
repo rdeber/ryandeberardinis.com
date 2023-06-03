@@ -134,7 +134,7 @@ export default function NavBar() {
             <nav>
               <ul>
                 {links.map((item) => (
-                  <li key={item.label}>
+                  <motion.li key={item.label} layout layoutRoot>
                     <StyledLink
                       onClick={() => setSelectedTab(item)}
                       className={item === selectedTab ? "selected" : ""}
@@ -149,12 +149,12 @@ export default function NavBar() {
                         layoutId="underline"
                       />
                     ) : null}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </nav>
           </StyledBox>
-          <Box sx={{ marginLeft: {sm: 'auto'} }}>
+          <Box sx={{ display: {xs: 'none', sm: 'flex'}, marginLeft: {sm: 'auto'} }}>
             {/* <Tooltip title="Contact Me">
               <IconButton size="large" aria-label="Open contact form" color="inherit">
                 <MailIcon />
