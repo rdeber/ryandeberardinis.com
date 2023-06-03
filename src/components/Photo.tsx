@@ -57,6 +57,7 @@ const Photo = (
       <LazyLoadImage
         loading="lazy"
         src={thumbnailURL}
+        srcSet={srcSet}
         alt={alt}
         // width={datapswpwidth}
         // height={datapswpheight}
