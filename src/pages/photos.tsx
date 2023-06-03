@@ -156,7 +156,7 @@ export default function AboutPage() {
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
-  // console.log('data', data);
+  console.log('data', images);
 
   return (
     <>

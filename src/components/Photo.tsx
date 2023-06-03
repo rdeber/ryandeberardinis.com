@@ -3,6 +3,9 @@ import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
 import { GatsbyImage, ImageDataLike, StaticImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
+import LazyLoad from 'parm-react-lazyload';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 
 interface PhotoProps {
   alt: string
@@ -42,6 +45,7 @@ const Photo = (
   }, []);
 
   return (
+    // <LazyLoadImage height={200}>
     <a
       href='../images/photos/big-tree-colors-orange.jpg'
       data-pswp-srcset={srcSet}
@@ -50,11 +54,15 @@ const Photo = (
       target="_blank"
       rel="noreferrer"
     >
-      <img
+      <LazyLoadImage
+        loading="lazy"
         src={thumbnailURL}
         alt={alt}
+        // width={datapswpwidth}
+        // height={datapswpheight}
         style={{
-          maxWidth: '100%'
+          maxWidth: '100%',
+          minHeight: '100px'
         }}
       />
       {/* <GatsbyImage
@@ -64,6 +72,7 @@ const Photo = (
       /> */}
 
     </a>
+    // </LazyLoad>
   );
 }
 
