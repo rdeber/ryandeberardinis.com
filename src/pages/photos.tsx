@@ -83,6 +83,10 @@ const FeaturedLogo = styled(motion.div)`
 `;
 
 const StyledBox = styled(motion.div)`
+  .lazy-load-image-background {
+    max-width: 100%;
+  }
+
   a {
     box-shadow: 0 6px 12px -2px rgba(50,50,93,0.25),
                 0 3px 7px -3px rgba(0,0,0,0.3);
@@ -121,8 +125,8 @@ export default function AboutPage() {
         edges {
           node {
             childImageSharp {
-              thumbnail: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 800, quality: 85)
-              photo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 2000, quality: 85)
+              thumbnail: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 600, quality: 80)
+              photo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 2000, quality: 80)
             }
             name
           }
@@ -152,11 +156,13 @@ export default function AboutPage() {
       srcSet: edge.node.childImageSharp.photo.images.fallback.srcSet,
       width: edge.node.childImageSharp.photo.width,
       height: edge.node.childImageSharp.photo.height,
+      widthThumbnail: edge.node.childImageSharp.thumbnail.width,
+      heightThumbnail: edge.node.childImageSharp.thumbnail.height,
       gatsbyImageData: edge.node.childImageSharp.photo,
       alt: parsedName, // Use the parsed name as the alt text
     };
   });
-  console.log('data', images);
+  console.log('data', data);
 
   return (
     <>
@@ -263,6 +269,8 @@ export default function AboutPage() {
                     thumbnailURL={image.thumbnailURL}
                     datapswpwidth={image.width}
                     datapswpheight={image.height}
+                    heightThumbnail={image.heightThumbnail}
+                    widthThumbnail={image.widthThumbnail}
                     gatsbyImage={image.gatsbyImageData}
                     key={'photo-' + index}
                   />

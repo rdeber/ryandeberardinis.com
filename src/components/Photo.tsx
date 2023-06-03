@@ -14,6 +14,8 @@ interface PhotoProps {
   thumbnailURL: string
   datapswpwidth: number
   datapswpheight: number
+  heightThumbnail: number
+  widthThumbnail: number
   gatsbyImage: any
 }
 
@@ -21,8 +23,9 @@ const Photo = (
   props: PhotoProps
 ): React.ReactElement => {
   const {
-    alt, largeURL, srcSet, thumbnailURL,
-    datapswpwidth, datapswpheight, gatsbyImage, ...rest
+    alt, largeURL, srcSet, thumbnailURL, gatsbyImage,
+    datapswpwidth, datapswpheight, heightThumbnail, widthThumbnail,
+    ...rest
   } = props
 
   useEffect(() => {
@@ -59,11 +62,12 @@ const Photo = (
         // srcSet={srcSet}
         alt={alt}
         effect="opacity"
-        // width={datapswpwidth}
-        // height={datapswpheight}
+        width={widthThumbnail}
+        height='100%'
         style={{
-          maxWidth: '100%',
-          minHeight: '100px'
+          height: 'auto',
+          width: '100%',
+          maxWidth: '100%'
         }}
       />
       {/* <GatsbyImage
