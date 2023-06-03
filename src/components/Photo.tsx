@@ -5,7 +5,7 @@ import { GatsbyImage, ImageDataLike, StaticImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import LazyLoad from 'parm-react-lazyload';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface PhotoProps {
   alt: string
@@ -47,7 +47,7 @@ const Photo = (
   return (
     // <LazyLoadImage height={200}>
     <a
-      href='../images/photos/big-tree-colors-orange.jpg'
+      href={largeURL}
       data-pswp-srcset={srcSet}
       data-pswp-width={datapswpwidth}
       data-pswp-height={datapswpheight}
@@ -56,8 +56,9 @@ const Photo = (
     >
       <LazyLoadImage
         src={thumbnailURL}
-        srcSet={srcSet}
+        // srcSet={srcSet}
         alt={alt}
+        effect="opacity"
         // width={datapswpwidth}
         // height={datapswpheight}
         style={{
