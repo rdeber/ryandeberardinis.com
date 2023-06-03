@@ -55,7 +55,6 @@ const Photo = (
       rel="noreferrer"
     >
       <LazyLoadImage
-        loading="lazy"
         src={thumbnailURL}
         srcSet={srcSet}
         alt={alt}
