@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
 import { GatsbyImage, ImageDataLike, StaticImage } from 'gatsby-plugin-image';
-import { useStaticQuery, graphql } from 'gatsby';
-import LazyLoad from 'parm-react-lazyload';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -55,6 +53,8 @@ const Photo = (
       data-pswp-height={datapswpheight}
       target="_blank"
       rel="noreferrer"
+      role='button'
+      aria-label='Click to view larger image'
     >
       <LazyLoadImage
         src={thumbnailURL}
