@@ -6,10 +6,11 @@ import { motion } from "framer-motion"
 import { theme } from '../utils/theme';
 import Masonry from '@mui/lab/Masonry';
 import {
-  childVariants, parentVariants, photoParent, photoChild, featuredChild, featuredParent, skillsVariants, skillsChildVariants,
+  childVariants, parentVariants, photoParent,
+  photoChild, featuredChild, featuredParent
 } from '../utils/motion';
-import { GatsbyImage, ImageDataLike, getImage } from 'gatsby-plugin-image';
-import { HeadProps, graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage, ImageDataLike } from 'gatsby-plugin-image';
+import { graphql, useStaticQuery } from 'gatsby';
 import Photo from '../components/Photo';
 import HeadData from '../components/HeadData';
 

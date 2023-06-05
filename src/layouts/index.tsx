@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react"
 import NavBar from "../components/NavBar";
 import { motion } from "framer-motion";
-import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { theme } from "../utils/theme";
 import { Box, Grid, Typography } from "@mui/material";
@@ -28,7 +28,7 @@ const NavBarContainer = styled(motion.div)`
   z-index: 2;
   width: 100%;
 
-  ${props => props.theme.breakpoints.up("sm")} {
+  ${props => props.theme.breakpoints.up("md")} {
     bottom: auto;
     top: 0;
   }
@@ -45,11 +45,8 @@ const StyledGrid = styled(Grid)`
   overflow: hidden;
   flex-direction: column;
 
-  ${props => props.theme.breakpoints.up("sm")} {
-    padding: 64px 0 0;
-  }
-
   ${props => props.theme.breakpoints.up("md")} {
+    padding: 64px 0 0;
     flex-direction: row;
   }
 `;
@@ -76,7 +73,8 @@ export default function Layout({ children }: LayoutProps) {
       <NavBarContainer
         initial={{ opacity: 0, transform: 'translateY(-5px)' }}
         animate={{ opacity: 1, transform: 'translateY(0)' }}
-        transition={{ duration: 0.25 }}
+        layout
+        layoutRoot
       >
         <NavBar />
       </NavBarContainer>

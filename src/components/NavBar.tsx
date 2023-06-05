@@ -4,17 +4,16 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link as GatsbyLink } from "gatsby"
 import { styled } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
-import MailIcon from '@mui/icons-material/Mail';
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from '@reach/router';
 import { theme } from '../utils/theme';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
+import ToggleIcon from './ToggleIcon';
 
 const StyledLink = styled(GatsbyLink)`
   font-family: ${theme.typography.h1.fontFamily};
@@ -100,6 +99,7 @@ function CodepenIcon(props: SvgIconProps) {
 }
 
 export default function NavBar() {
+  const [open, setOpen] = React.useState(false);
   const [selectedTab, setSelectedTab] = useState<Link | null>(null);
   const location = useLocation();
 
@@ -117,24 +117,29 @@ export default function NavBar() {
     setSelectedTab(currentTab);
   }, [location]);
 
+  const handleClickOpen = (open: boolean) => {
+    setOpen(open);
+  };
+
+  const handleClose = (value: string) => {
+    setOpen(false);
+  };
+
+  console.log('open', open)
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          {/* <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton> */}
+          <ToggleIcon
+            open={open}
+            handleClickOpen={handleClickOpen}
+          />
           <StyledBox sx={{ flexGrow: 1 }}>
             <nav>
               <ul>
                 {links.map((item) => (
-                  <motion.li key={item.label} layout layoutRoot>
+                  <motion.li key={item.label}>
                     <StyledLink
                       onClick={() => setSelectedTab(item)}
                       className={item === selectedTab ? "selected" : ""}
@@ -147,6 +152,7 @@ export default function NavBar() {
                         transition={{ type: "spring", stiffness: 100, damping: 10 }}
                         className="underline"
                         layoutId="underline"
+                        layout
                       />
                     ) : null}
                   </motion.li>

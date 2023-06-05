@@ -8,7 +8,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ContactForm from '../components/ContactForm';
 import { childVariants, parentVariants } from '../utils/motion';
 import HeadData from '../components/HeadData';
-import { useEffect, useRef, useState } from 'react';
 
 export function Head() {
   return (
@@ -61,6 +60,8 @@ export default function HomePage() {
 
   // console.log('hasFocused', hasFocused);
   // console.log('focusedOrHasFocused', focusedOrHasFocused);
+
+  const [open, setOpen] = React.useState(false);
 
   return (
     <>
