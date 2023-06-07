@@ -13,6 +13,7 @@ import { GatsbyImage, ImageDataLike } from 'gatsby-plugin-image';
 import { graphql, useStaticQuery } from 'gatsby';
 import Photo from '../components/Photo';
 import HeadData from '../components/HeadData';
+import { Tooltip } from '@mui/material';
 
 export function Head() {
   return (
@@ -117,6 +118,15 @@ export default function AboutPage() {
           node {
             childImageSharp {
               logo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 200, quality: 85, placeholder: NONE)
+              fields {
+                exif {
+                  raw {
+                    image {
+                      ImageDescription
+                    }
+                  }
+                }
+              }
             }
             name
           }
@@ -128,6 +138,15 @@ export default function AboutPage() {
             childImageSharp {
               thumbnail: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 600, quality: 80)
               photo: gatsbyImageData(formats: WEBP, layout: CONSTRAINED, width: 2000, quality: 80)
+              fields {
+                exif {
+                  raw {
+                    image {
+                      ImageDescription
+                    }
+                  }
+                }
+              }
             }
             name
           }
@@ -137,18 +156,26 @@ export default function AboutPage() {
   `);
 
   // Build the photos data
-  const images = data.allFile.edges.map((
-    edge: {
-      node: {
-        name: string;
-        childImageSharp: {
-          photo: any;
-          thumbnail: any;
-          fixed: any
-          gatsbyImageData: ImageDataLike
+  const images = data.allFile.edges.map((edge: {
+    node: {
+      name: string;
+      childImageSharp: {
+        fields: {
+          exif: {
+            raw: {
+              image: {
+                ImageDescription: string;
+              };
+            };
+          };
         };
+        photo: any;
+        thumbnail: any;
+        fixed: any;
+        gatsbyImageData: ImageDataLike;
       };
-    }) => {
+    };
+  }) => {
     const imageName = edge.node.name; // Get the image name
     const parsedName = imageName.replace(/-/g, ' '); // Remove dashes from the name
     return {
@@ -160,7 +187,8 @@ export default function AboutPage() {
       widthThumbnail: edge.node.childImageSharp.thumbnail.width,
       heightThumbnail: edge.node.childImageSharp.thumbnail.height,
       gatsbyImageData: edge.node.childImageSharp.photo,
-      alt: parsedName, // Use the parsed name as the alt text
+      alt: edge.node.childImageSharp.fields.exif.raw.image.ImageDescription
+      // alt: parsedName,
     };
   });
   console.log('data', data);
@@ -232,7 +260,8 @@ export default function AboutPage() {
                 <FeaturedLogo variants={featuredChild}>
                   <GatsbyImage
                     image={edge.node.childImageSharp.logo}
-                    alt=""
+                    alt={edge.node.name}
+                    // alt={edge.node.childImageSharp.fields.exif.raw.image.ImageDescription}
                   />
                 </FeaturedLogo>
               </Grid>
