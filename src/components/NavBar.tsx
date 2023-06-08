@@ -131,10 +131,10 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <ToggleIcon
+          {/* <ToggleIcon
             open={open}
             handleClickOpen={handleClickOpen}
-          />
+          /> */}
           <StyledBox sx={{ flexGrow: 1 }}>
             <nav>
               <ul>

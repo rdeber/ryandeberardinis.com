@@ -411,6 +411,78 @@ export default function AboutPage() {
           ))}
         </StyledBoxWrap>
       </Grid>
+{/*
+      <Grid
+        item
+        xs={12}
+        sx={{
+          padding: {
+            xs: '2rem 1.5rem'
+          }
+        }}
+      >
+        <motion.div
+          variants={parentVariants}
+          initial="hidden"
+          animate={'visible'}
+        >
+          <StyledH1
+            // @ts-expect-error
+            component={motion.h1}
+            variants={childVariants}
+            variant="h1"
+          >
+            <span>Hello</span>
+          </StyledH1>
+          <StyledH2
+            // @ts-expect-error
+            component={motion.h2}
+            variants={childVariants}
+            variant="h2"
+          >
+            I'm a frontend web developer.
+          </StyledH2>
+
+          <StyledH3
+            // @ts-expect-error
+            component={motion.h3}
+            variants={childVariants}
+            variant="h3"
+          >
+            How it's made
+          </StyledH3>
+          <Typography
+            component={motion.p}
+            variants={childVariants}
+            variant="body1"
+          >
+            This website is build from scratch using the following technologies:
+
+          </Typography>
+        </motion.div>
+        <StyledSkills>
+          <Grid
+            container
+            spacing={1}
+            component={motion.ul}
+            variants={skillsVariants}
+            initial="hidden"
+            animate={'visible'}
+          >
+            {skills.map((label: string, index: number) => (
+              <Grid key={index} component={'li'} item>
+                <Chip
+                  size="small"
+                  component={motion.div}
+                  variants={skillsChildVariants}
+                  label={label}
+                  color='primary'
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </StyledSkills>
+      </Grid> */}
       {/* <Grid
         item
         xs={12}
