@@ -256,7 +256,7 @@ export default function HomePage() {
             </Tooltip>
             <Tooltip title="View Codepens">
               <IconButton
-                href="https://github.com/rdeber/ryandeberardinis.com"
+                href="https://codepen.io/rdeber"
                 size="large"
                 color='inherit'
                 aria-label="View my code on Codepen"
@@ -266,7 +266,7 @@ export default function HomePage() {
             </Tooltip>
             <Tooltip title="View photos on Adobe">
               <IconButton
-                href="https://github.com/rdeber/ryandeberardinis.com"
+                href="https://stock.adobe.com/contributor/201765499/deberarr"
                 aria-label="View my photography on Adobe"
                 className='photo-icon'
               >
@@ -275,7 +275,7 @@ export default function HomePage() {
             </Tooltip>
             <Tooltip title="Connect on LinkedIn">
               <IconButton
-                href="https://github.com/rdeber/ryandeberardinis.com"
+                href="https://www.linkedin.com/in/ryandeberardinis/"
                 size="large"
                 color='inherit'
                 aria-label="Connect with me on LinkedIn"
