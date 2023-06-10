@@ -8,9 +8,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import ContactForm from '../components/ContactForm';
 import { childVariants, parentVariants } from '../utils/motion';
 import HeadData from '../components/HeadData';
-import { GitHub, LinkedIn } from '@mui/icons-material';
-import { Tooltip, IconButton, Stack, SvgIcon, SvgIconProps, Box, filledInputClasses } from '@mui/material';
-import { Link } from 'gatsby';
+import {
+  Tooltip, IconButton, Stack,
+  SvgIcon, SvgIconProps
+} from '@mui/material';
 
 export function Head() {
   return (
@@ -176,29 +177,6 @@ const StyledIcons = styled(Stack)`
 
 export default function HomePage() {
   const isMediumAndDown = useMediaQuery(theme.breakpoints.down('md'));
-  // const elementRef = useRef<HTMLDivElement | null>(null);
-  // const [hasFocused, setHasFocused] = useState<boolean | undefined>(false);
-  // const [focusedOrHasFocused, setFocusedOrHasFocused] = useState<boolean | undefined>(false);
-
-  // useEffect(() => {
-  //   const handleFocusChange = () => {
-  //     setHasFocused(elementRef.current?.matches(':focus-within:not(:focus)'));
-  //     setFocusedOrHasFocused(elementRef.current?.matches(':focus-within'));
-  //   };
-
-  //   document.addEventListener('focusin', handleFocusChange);
-  //   document.addEventListener('focusout', handleFocusChange);
-
-  //   return () => {
-  //     document.removeEventListener('focusin', handleFocusChange);
-  //     document.removeEventListener('focusout', handleFocusChange);
-  //   };
-  // }, []);
-
-  // console.log('hasFocused', hasFocused);
-  // console.log('focusedOrHasFocused', focusedOrHasFocused);
-
-  const [open, setOpen] = React.useState(false);
 
   return (
     <>
