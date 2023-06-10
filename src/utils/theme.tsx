@@ -12,7 +12,6 @@ export const theme = createTheme({
     },
     text: {
       primary: '#3b4351',
-      // secondary: '#293fb9'
     }
   },
   shape: {

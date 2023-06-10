@@ -212,24 +212,9 @@ export default function AboutPage() {
           >
             <span>Photos</span>
           </StyledH1>
-          {/* <StyledH2
-            // @ts-expect-error
-            component={motion.h2}
-            variants={childVariants}
-            variant="h2"
-          >
-            Nature + Cities + People
-          </StyledH2>
-          <Typography
-            component={motion.p}
-            variants={childVariants}
-            variant="body1"
-          >
-            My photography captures the beauty and essence of diverse subjects, ranging from breathtaking natural landscapes to captivating urban city scenes. Through my lens, I aim to showcase the intricate details, hidden moments, and the undeniable energy that permeates people and places.
-          </Typography> */}
           <StyledH3
             // @ts-expect-error
-            component={motion.h3}
+            component={motion.h2}
             variants={childVariants}
             variant="h3"
           >
@@ -261,7 +246,6 @@ export default function AboutPage() {
                   <GatsbyImage
                     image={edge.node.childImageSharp.logo}
                     alt={edge.node.name}
-                    // alt={edge.node.childImageSharp.fields.exif.raw.image.ImageDescription}
                   />
                 </FeaturedLogo>
               </Grid>
