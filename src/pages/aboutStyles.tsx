@@ -27,6 +27,10 @@ export const StyledH3 = styled(Typography)`
   align-items: center;
   justify-content: center;
 
+  ${props => props.theme.breakpoints.up("md")} {
+    justify-content: flex-start;
+  }
+
   &:before,
   &:after {
     content: "";
@@ -47,17 +51,22 @@ export const StyledSkills = styled(Box)`
   max-width: 450px;
   margin: auto;
 
-  .MuiGrid-root {
-    justify-content: center;
-  }
-
   ul, li {
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
+  ul.MuiGrid-root {
+    justify-content: center;
+  }
+
   ${props => props.theme.breakpoints.up("md")} {
+    margin: 0;
+
+    ul.MuiGrid-root {
+      justify-content: flex-start;
+    }
   }
 `;
 
