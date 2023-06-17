@@ -15,7 +15,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import {
   StyledBox, StyledBoxWrap, StyledH1,
   StyledH2, StyledH3, StyledSkills, StyledBoxInner
-} from './aboutStyles'
+} from '../styles/aboutStyles'
 
 export function Head() {
   return (

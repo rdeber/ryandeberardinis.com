@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import {
   StyledH1, StyledH2, StyledIcons
-} from './indexStyles'
+} from '../styles/indexStyles'
 
 export function Head() {
   return (
@@ -133,8 +133,8 @@ export default function HomePage() {
         md={6}
         sx={{
           padding: {
-            xs: '2rem 1.5rem',
-            sm: '3rem 3rem 3rem',
+            xs: '2rem 1.5rem 0',
+            sm: '3rem 3rem 0',
             md: '6rem 1rem 4rem 3rem'
           }
         }}
